@@ -1,4 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<div>
+    <app-authentication [(token)]='token'></app-authentication>
+</div>
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -17,4 +20,6 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
-
+<div>
+  <app-user-list *ngIf="token" [token]="token"></app-user-list>
+</div>
