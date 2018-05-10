@@ -2,37 +2,52 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { environment } from '@src/environments/environment';
 
+import { UserService, UserData } from '@src/app/services/user.service';
+
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent implements OnInit {
-  user = {
-    login: '',
+  userData = {
+    username: '',
     password: ''
   }
   @Input() token;
   @Output() tokenChange = new EventEmitter<string>();
 
+  error: string;
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private user: UserService
   ) { }
 
   ngOnInit() {
-
+    let userData = this.user.getData();
+    console.log('Token', userData);
+    if (userData) {
+      this.token = userData.token;
+      console.log('Token', this.token);
+    }
   }
 
   auth() {
-    this.http.post(environment.url + '/wp-json/jwt-auth/v1/token', {
-      username: this.user.login,
-      password: this.user.password
-    }).subscribe((data) => {
-      if (data['token']) {
-        this.token = data['token'];
-        this.tokenChange.emit(this.token);
-      }
+    this.error = '';
+
+    this.user.login(this.userData)
+    .then((res: UserData) => {
+      console.log('User Logged in', res.token);
+      this.token = res.token;
+    }, err => {
+      console.log('User Not Logged In', err);
+      this.error = err.error.message;
     });
+  }
+
+  logout() {
+    return this.user.logout();
   }
 
 }

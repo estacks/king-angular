@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'http://king.rocks'
+  url: 'http://king.rocks/wp-json/'
 };
 
 /*

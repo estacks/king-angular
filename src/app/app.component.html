@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
-    <app-authentication [(token)]='token'></app-authentication>
+    <app-authentication></app-authentication>
 </div>
 <div style="text-align:center">
   <h1>
@@ -21,5 +21,5 @@
   </li>
 </ul>
 <div>
-  <app-user-list *ngIf="token" [token]="token"></app-user-list>
+  <app-user-list></app-user-list>
 </div>
