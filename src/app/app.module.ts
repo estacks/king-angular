@@ -9,11 +9,11 @@ import { WpApiModule, WpApiLoader, WpApiStaticLoader } from 'wp-api-angular';
 
 import { httpInterceptorProviders } from './http-interceptors';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { environment } from '../environments/environment';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { PostNewComponent } from './components/post-new/post-new.component';
+import { HeaderComponent } from './layouts/header/header.component';
+import { FooterComponent } from './layouts/footer/footer.component';
 
 export function WpApiLoaderFactory(http: Http) {
   return new WpApiStaticLoader(http, environment.url, /* namespace is optional, default: '/wp/v2' */);
@@ -22,9 +22,8 @@ export function WpApiLoaderFactory(http: Http) {
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent,
-    UserListComponent,
-    PostNewComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +34,8 @@ export function WpApiLoaderFactory(http: Http) {
       useFactory: (WpApiLoaderFactory),
       deps: [Http]
     }),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

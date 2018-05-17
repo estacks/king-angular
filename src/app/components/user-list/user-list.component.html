@@ -1,4 +1,4 @@
-<div class="user-list" *ngIf="users">
+<div class="user-list" *ngIf="users && users.length > 0">
   <h2>Users:</h2>
   <div *ngFor="let user of users">
      Name: {{user.name}}

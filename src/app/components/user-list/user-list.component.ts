@@ -13,7 +13,6 @@ import { first } from 'rxjs/operators';
 })
 export class UserListComponent implements OnInit {
   users = [];
-  @Input() token: string;
 
   constructor(
     private wpApiUsers: WpApiUsers,

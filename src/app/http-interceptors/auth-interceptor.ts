@@ -7,6 +7,13 @@ import { finalize, tap } from 'rxjs/operators';
 
 import { UserService } from '../services/user.service';
 
+
+/**
+ *  This HTTP interceptor will detect if the user currently has a token and attach that token to any JSON requests.
+ *
+ *  If the token is invalid, the user will be logged out client-side.
+ */
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor (

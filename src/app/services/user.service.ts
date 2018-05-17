@@ -1,20 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { environment } from '@src/environments/environment';
-
 import { Observable, BehaviorSubject } from 'rxjs';
 
-export interface LoginOptions {
-  username: string,
-  password: string
-};
-
-export interface UserData {
-  token: string,
-  user_display_name: string,
-  user_email: string,
-  user_nicename: string
-};
+import { environment } from '@src/environments/environment';
+import { UserData, UserLoginOptions } from '../models/user.model';
+export { UserData, UserLoginOptions };
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +22,7 @@ export class UserService {
     this.validateToken();
   }
 
-  login(options: LoginOptions) {
+  login(options: UserLoginOptions) {
     console.log('UserService.login', options);
 
     return new Promise((resolve, reject) => {
