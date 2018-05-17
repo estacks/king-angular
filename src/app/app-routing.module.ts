@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { HeaderComponent } from './layouts/header/header.component';
@@ -29,15 +31,21 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    ScrollToModule,
     NgbModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [RouterModule],
-  declarations: [
-    HomeComponent,
+  exports: [
+    RouterModule,
     AuthenticationComponent,
     UserListComponent,
-    PostNewComponent
+    PostNewComponent,
+  ],
+  declarations: [
+    AuthenticationComponent,
+    UserListComponent,
+    PostNewComponent,
+    HomeComponent,
   ]
 })
 export class AppRoutingModule { }

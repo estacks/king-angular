@@ -22,9 +22,12 @@
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",
+    "@nicky-lenaers/ngx-scroll-to": "^0.6.1",
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
+    "font-awesome": "^4.7.0",
     "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.1.0",
     "wp-api-angular": "^3.0.0-beta8",
     "zone.js": "^0.8.26"
   },
