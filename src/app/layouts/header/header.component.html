@@ -1,25 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-  <a class="navbar-brand" routerLink="/">
-    <img src="assets/logo.png" alt="Logo">
-  </a>
-  <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+  <logo>
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/logo.png" class="d-inline-block align-top" height="32" alt="Logo">
+    </a>
+  </logo>
 
-  <div class="collapse navbar-collapse" id="navbarHeader" [ngbCollapse]="isCollapsed">
+  <links>
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li class="nav-item" routerLink="/home" [routerLinkActive]="'active'">
         <a class="nav-link" routerLink="/home" [routerLinkActive]="'active'">About</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" routerLink="/blog" [routerLinkActive]="'active'">
         <a class="nav-link" routerLink="/blog" [routerLinkActive]="'active'">Blog</a>
       </li>
-      <li class="nav-item dropdown" ngbDropdown #navDropdown="ngbDropdown">
-        <a class="nav-link dropdown-toggle" id="navbarProjects" role="button" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle (mouseover)="navDropdown.open()">
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light" id="navbarProjects" type="button">
           Projects
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarProjects" ngbDropdownMenu>
+        <div class="dropdown-menu" aria-labelledby="navbarProjects">
           <a class="dropdown-item" routerLink="/page/projects" [routerLinkActive]="'active'">Platstar</a>
           <a class="dropdown-item" href="#" [routerLinkActive]="'active'">Colorado Board Company</a>
           <div class="dropdown-divider"></div>
@@ -28,20 +26,14 @@
           <a class="dropdown-item" href="#" [routerLinkActive]="'active'">Demo: Store</a>
         </div>
       </li>
-      <li class="nav-item dropdown" ngbDropdown #navLogin="ngbDropdown">
-        <a class="nav-link dropdown-toggle" id="navbarLogin" role="button" ngbDropdownToggle>
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light" id="navbarLogin" type="button">
           Account
         </a>
-        <div class="dropdown-menu p-2 text-center" ngbDropdownMenu>
+        <div class="dropdown-menu p-2 text-center">
           <app-authentication></app-authentication>
         </div>
       </li>
     </ul>
-    <!--<form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>-->
-  </div>
-
-</div>
-</nav>
+  </links>
+</mdb-navbar>

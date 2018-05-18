@@ -29,9 +29,22 @@
               "src/style.css"
             ],
             "styles": [
+              "node_modules/font-awesome/scss/font-awesome.scss",
+              "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+              "node_modules/animate.css/animate.css",
               "src/styles.scss"
             ],
             "scripts": [
+              {
+                "input": "node_modules/wowjs/dist/wow.js"
+              },
+              {
+                "input": "node_modules/chart.js/dist/Chart.js"
+              },
+              {
+                "input": "node_modules/hammerjs/hammer.min.js"
+              },
               {
                 "input": "node_modules/document-register-element/build/document-register-element.js"
               },

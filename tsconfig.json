@@ -16,10 +16,12 @@
       "es2017",
       "dom"
     ],
+
     "paths": {
       "eval-component": [
         "dist/eval-component"
       ]
     }
-  }
+  },
+  "include": ["node_modules/angular-bootstrap-md/**/*.ts",  "src/**/*.ts"], 
 }

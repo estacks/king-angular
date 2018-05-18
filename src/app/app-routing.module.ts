@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 import { EvalComponentModule } from 'projects/eval-component/src/public_api';
 //import { EvalComponentModule } from 'eval-component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 //Layouts
 import { HeaderComponent } from './layouts/header/header.component';
@@ -76,8 +77,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ScrollToModule,
-    NgbModule,
     EvalComponentModule,
+    MDBBootstrapModule,
     RouterModule.forRoot(routes)
   ],
   exports: [
@@ -101,6 +102,7 @@ const routes: Routes = [
   ],
   providers: [
     WpResolver
-  ]
+  ],
+  schemas: [ /*NO_ERRORS_SCHEMA*/ ]
 })
 export class AppRoutingModule { }

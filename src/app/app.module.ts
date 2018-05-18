@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Http } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { httpInterceptorProviders } from './http-interceptors';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,8 +18,8 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgbModule.forRoot(),
     ScrollToModule.forRoot(),
+    MDBBootstrapModule.forRoot(),
     AppRoutingModule
   ],
   providers: [httpInterceptorProviders],
