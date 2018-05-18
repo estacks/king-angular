@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { first, skip } from 'rxjs/operators';
 
-import { environment } from '@src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { UserData, UserLoginOptions } from '../models/user.model';
 export { UserData, UserLoginOptions };
 
@@ -10,7 +11,6 @@ export { UserData, UserLoginOptions };
   providedIn: 'root'
 })
 export class UserService {
-  private _loggedIn: boolean = false;
   private _data: BehaviorSubject<UserData> = new BehaviorSubject(undefined);
   public readonly data: Observable<UserData> = this._data.asObservable();
 
@@ -44,8 +44,17 @@ export class UserService {
     });
   }
 
-  public get loggedIn() {
-    return this._loggedIn;
+  public get onLoggedIn(): Observable<UserData> {
+    return this.data.pipe(
+      first(data => !!data)
+    );
+  }
+
+  public get onLoggedOut(): Observable<UserData> {
+    return this.data.pipe(
+      skip(1),
+      first(data => !data)
+    );
   }
 
   public get headers() {
@@ -74,11 +83,9 @@ export class UserService {
 
   private setUserData(data: UserData): void {
     this._data.next(data);
-    this._loggedIn = true;
   }
 
   logout() {
-    this._loggedIn = false;
     this._data.next(undefined);
     localStorage.removeItem('auth');
   }

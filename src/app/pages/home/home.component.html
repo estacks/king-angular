@@ -1,25 +1,2 @@
-<div class="page-home">
-  <div class="hero">
-    <h1 class="title">Eric King</h1>
-    <h2 class="subtitle">< Software Developer ></h2>
-  </div>
-
-  <div class="main container">
-    <div class="intro row">
-      <div class="col-12 col-md-6">
-        <h3>Who I Am</h3>
-        <p>I’m co-founder and lead developer of Platstar and a freelancer on the side. I have over 5 years of experience programming in Javascript, PHP, C++, and various other languages. My major specialty now is Javascript, web design, and hybrid mobile apps using Angular. I’m a prolific user of Meteor, Node.js, and MongoDB for API and backend work, and I like WordPress for general websites and blogging. In the past I worked on computational physics research using MATLAB, C++, and Python.</p>
-      </div>
-      <div class="col-12 col-md-6">
-        <h3>Interests</h3>
-        <p>My main hobbies have always been programming, extensively modding computer games, and working out. I’m a big fan of weightlifting, biking, and boxing! Some of my favorite books are A Brief History of Time, Hitchhiker’s Guide to the Galaxy, 48 Laws of Power, and the Wheel of Time series.</p>
-      </div>
-    </div>
-    <div class="proficiency">
-      <p>HTML 5</p>
-      <p><ngb-progressbar type="success" [value]="100" striped="true" animated="true"></ngb-progressbar></p>
-      <p>CSS, SASS</p>
-      <p><ngb-progressbar type="success" [value]="90" striped="true" animated="true"></ngb-progressbar></p>
-    </div>
-  </div>
-</div>
+<eval-component *ngIf="pageText" [template]="pageText" [data]="context"></eval-component>
+<app-user-list></app-user-list>

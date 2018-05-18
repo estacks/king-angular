@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { WpApiUsers } from 'wp-api-angular';
 import { Headers } from '@angular/http';
 
-import { UserService } from '@src/app/services/user.service';
+import { WpService } from 'src/app/services/wp.service';
+import { UserService } from 'src/app/services/user.service';
 
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-list',
@@ -16,13 +16,12 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private wpApiUsers: WpApiUsers,
+    private wp: WpService,
     private user: UserService
   ) { }
 
   ngOnInit() {
-    this.user.data.pipe(
-      first(data => !!data)
-    ).subscribe((data) => {
+    this.user.onLoggedIn.subscribe((data) => {
       this.getUserList();
     });
   }
@@ -30,9 +29,8 @@ export class UserListComponent implements OnInit {
   getUserList() {
     console.log('Get User', this.user.getData(), this.user.headers);
 
-    this.wpApiUsers.getList({headers: this.user.headers}).toPromise().then(res => {
-      let json: any = res.json();
-      this.users = json;
+    this.wp.get('users').subscribe((res:any) => {
+      if (res && res.length > 0) this.users = res;
     })
   }
 

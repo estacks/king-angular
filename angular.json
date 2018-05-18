@@ -31,7 +31,14 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              },
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -116,6 +123,46 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "eval-component": {
+      "root": "projects/eval-component",
+      "sourceRoot": "projects/eval-component/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/eval-component/tsconfig.lib.json",
+            "project": "projects/eval-component/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/eval-component/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/eval-component/src/test.ts",
+            "tsConfig": "projects/eval-component/tsconfig.spec.json",
+            "karmaConfig": "projects/eval-component/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/eval-component/tsconfig.lib.json",
+              "projects/eval-component/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]

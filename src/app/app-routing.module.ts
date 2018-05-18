@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { EvalComponentModule } from 'projects/eval-component/src/public_api';
+//import { EvalComponentModule } from 'eval-component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -33,6 +35,7 @@ const routes: Routes = [
     FormsModule,
     ScrollToModule,
     NgbModule,
+    EvalComponentModule,
     RouterModule.forRoot(routes)
   ],
   exports: [
