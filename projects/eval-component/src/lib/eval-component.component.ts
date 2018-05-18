@@ -54,20 +54,17 @@ export class EvalComponentComponent implements AfterViewInit, OnDestroy, OnChang
   }
 
   ngAfterViewInit() {
-    if (!this.template) return false;
-
-    this.container.clear();
-
     console.log('Beginning compile', this, NgModule);
 
     this.componentDecorator.template = this.template;
 
 
-    let DynamicType:any = CustomComponent(this.template);
-    let DynamicModule = CustomNgModule(DynamicType);
+    let DynamicComponent = CreateComponent(this.template, this.componentClass, this.componentDecorator);
+    let DynamicModule = CreateNgModule(DynamicComponent, this.moduleClass, this.moduleDecorator);
 
     this.compiler.compileModuleAndAllComponentsAsync(DynamicModule)
       .then((factories) => {
+        this.container.clear();
         const f:any = factories.componentFactories[0];
         this.cleanupComponent();
         this.cmpRef = this.container.createComponent(f);
@@ -99,28 +96,26 @@ export class EvalComponentComponent implements AfterViewInit, OnDestroy, OnChang
   }
 }
 
-export function CustomComponent(template: string) {
-  class CustomDynamicComponent {}
+export function CreateComponent(template: string, initClass: any, decorator: any) {
+  class CustomDynamicComponent extends initClass {};
+
   CustomDynamicComponent['decorators'] = [{
     type: Component,
-    args: [{
-      selector: 'dynamic-component',
-      template: template
-    }]
+    args: [Object.assign(decorator, { template: template })]
   }];
 
   return CustomDynamicComponent;
 }
 
-export function CustomNgModule(component: any) {
-  class CustomDynamicModule {};
+export function CreateNgModule(component: any, initClass: any, decorator: any) {
+  class CustomDynamicModule extends initClass {};
+
   CustomDynamicModule['decorators'] = [{
     type: NgModule,
-    args: [{
-      imports: [CommonModule],
+    args: [Object.assign(decorator, {
       declarations: [component],
       exports: [component]
-    }]
+    })]
   }];
 
   return CustomDynamicModule;
