@@ -1,26 +1,36 @@
 import {
   Component,
-  HostListener,
   Input,
-  NgModuleRef,
   AfterViewInit,
   Compiler,
+  COMPILER_OPTIONS,
+  CompilerFactory,
   OnDestroy,
   OnChanges,
   NgModule,
   ViewChild,
-  ComponentFactoryResolver,
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { JitCompiler } from '@angular/compiler';
+import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
+
+// https://github.com/angular/angular/issues/15510#issuecomment-294860905
+export function createJitCompiler (compilerFactory: CompilerFactory) {
+  return compilerFactory.createCompiler();
+}
 
 @Component({
   selector: 'eval-component',
   template: `
     <ng-template #container></ng-template>
   `,
-  styles: []
+  providers: [
+    {provide: COMPILER_OPTIONS, useValue: {}, multi: true},
+    {provide: CompilerFactory, useClass: JitCompilerFactory, deps: [COMPILER_OPTIONS]},
+    {provide: Compiler, useFactory: createJitCompiler, deps: [CompilerFactory]}
+  ]
 })
 export class EvalComponentComponent implements AfterViewInit, OnDestroy, OnChanges {
   @Input() template: string;
@@ -38,9 +48,7 @@ export class EvalComponentComponent implements AfterViewInit, OnDestroy, OnChang
   cmpRef: any;
 
   constructor(
-    private _m: NgModuleRef<any>,
-    private _compiler: Compiler,
-    private _resolver: ComponentFactoryResolver
+    private compiler: Compiler,
   ) {
 
   }
@@ -58,7 +66,7 @@ export class EvalComponentComponent implements AfterViewInit, OnDestroy, OnChang
     let DynamicType:any = CustomComponent(this.template);
     let DynamicModule = CustomNgModule(DynamicType);
 
-    this._compiler.compileModuleAndAllComponentsAsync(DynamicModule)
+    this.compiler.compileModuleAndAllComponentsAsync(DynamicModule)
       .then((factories) => {
         const f:any = factories.componentFactories[0];
         this.cleanupComponent();
