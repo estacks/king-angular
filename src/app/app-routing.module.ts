@@ -16,12 +16,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { PostNewComponent } from './components/post-new/post-new.component';
-
+import { WpPageComponent } from './pages/wp-page/wp-page.component';
 
 
 const routes: Routes = [
   { path: '', children: [
       { path: 'home', component: HomeComponent },
+      { path: 'page/:slug', component: WpPageComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '', component: HeaderComponent, outlet: 'header' },
       { path: '', component: FooterComponent, outlet: 'footer' }
@@ -49,6 +50,9 @@ const routes: Routes = [
     UserListComponent,
     PostNewComponent,
     HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    WpPageComponent,
   ]
 })
 export class AppRoutingModule { }

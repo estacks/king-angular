@@ -1,0 +1,8 @@
+<div class="wp-page container">
+  <div class="main" *ngIf="page">
+    <h2>{{page.title.rendered}}</h2>
+    <div class="content rte">
+      <eval-component [template]="page.content.rendered"></eval-component>
+    </div>
+  </div>
+</div>
