@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WpApiUsers } from 'wp-api-angular';
 import { Headers } from '@angular/http';
 
 import { WpService } from 'src/app/services/wp.service';
@@ -15,7 +14,6 @@ export class UserListComponent implements OnInit {
   users = [];
 
   constructor(
-    private wpApiUsers: WpApiUsers,
     private wp: WpService,
     private user: UserService
   ) { }

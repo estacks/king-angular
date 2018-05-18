@@ -1,4 +1,18 @@
-import { Component, HostListener, Input, NgModuleRef, Compiler, Injector, AfterViewInit, OnDestroy, OnChanges, NgModule, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Input,
+  NgModuleRef,
+  AfterViewInit,
+  Compiler,
+  OnDestroy,
+  OnChanges,
+  NgModule,
+  ViewChild,
+  ComponentFactoryResolver,
+  ViewContainerRef,
+  ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -25,8 +39,8 @@ export class EvalComponentComponent implements AfterViewInit, OnDestroy, OnChang
 
   constructor(
     private _m: NgModuleRef<any>,
-    private _injector: Injector,
-    private _compiler: Compiler
+    private _compiler: Compiler,
+    private _resolver: ComponentFactoryResolver
   ) {
 
   }
@@ -36,19 +50,19 @@ export class EvalComponentComponent implements AfterViewInit, OnDestroy, OnChang
 
     this.container.clear();
 
-    console.log('Beginning compile', this.container, this.data);
+    console.log('Beginning compile', this, NgModule);
 
     this.componentDecorator.template = this.template;
-    const tmpCmp = Component(this.componentDecorator)(this.componentClass);
 
-    this.moduleDecorator.declarations = [ tmpCmp ];
-    const tmpModule = NgModule(this.moduleDecorator)(this.moduleClass);
 
-    this._compiler.compileModuleAndAllComponentsAsync(tmpModule)
+    let DynamicType:any = CustomComponent(this.template);
+    let DynamicModule = CustomNgModule(DynamicType);
+
+    this._compiler.compileModuleAndAllComponentsAsync(DynamicModule)
       .then((factories) => {
-        const f = factories.componentFactories[0];
+        const f:any = factories.componentFactories[0];
         this.cleanupComponent();
-        this.cmpRef = this.container.createComponent(f);//f.create(this._injector, [], null, this._m);
+        this.cmpRef = this.container.createComponent(f);
         this.updateData();
       });
   }
@@ -75,4 +89,31 @@ export class EvalComponentComponent implements AfterViewInit, OnDestroy, OnChang
       this.cmpRef.instance = Object.assign(this.cmpRef.instance, this.data);
     }
   }
+}
+
+export function CustomComponent(template: string) {
+  class CustomDynamicComponent {}
+  CustomDynamicComponent['decorators'] = [{
+    type: Component,
+    args: [{
+      selector: 'dynamic-component',
+      template: template
+    }]
+  }];
+
+  return CustomDynamicComponent;
+}
+
+export function CustomNgModule(component: any) {
+  class CustomDynamicModule {};
+  CustomDynamicModule['decorators'] = [{
+    type: NgModule,
+    args: [{
+      imports: [CommonModule],
+      declarations: [component],
+      exports: [component]
+    }]
+  }];
+
+  return CustomDynamicModule;
 }

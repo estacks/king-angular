@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "wp-copy": "ng build && cp -rf ./dist/* $KING_DEPLOY"
+    "wp-copy": "cp -rf ./dist/* $KING_DEPLOY"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +30,6 @@
     "font-awesome": "^4.7.0",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.1.0",
-    "wp-api-angular": "^3.0.0-beta8",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
