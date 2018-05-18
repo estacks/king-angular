@@ -54,10 +54,7 @@ export class EvalComponentComponent implements AfterViewInit, OnDestroy, OnChang
   }
 
   ngAfterViewInit() {
-    console.log('Beginning compile', this, NgModule);
-
     this.componentDecorator.template = this.template;
-
 
     let DynamicComponent = CreateComponent(this.template, this.componentClass, this.componentDecorator);
     let DynamicModule = CreateNgModule(DynamicComponent, this.moduleClass, this.moduleDecorator);

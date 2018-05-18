@@ -1,0 +1,11 @@
+<div id="wp-post" class=" container">
+  <main id="main" *ngIf="post">
+    <h2>{{post.title.rendered}}</h2>
+    <div class="content rte">
+      <eval-component [template]="post.content.rendered"></eval-component>
+    </div>
+    <div class="replies" *ngIf="post._embedded && post._embedded.replies">
+      <list-replies [replies]="post._embedded.replies"></list-replies>
+    </div>
+  </main>
+</div>
