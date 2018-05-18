@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { environment } from '@src/environments/environment';
+import { environment } from 'src/environments/environment';
 
-import { UserService, UserData } from '@src/app/services/user.service';
+import { UserService, UserData } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-authentication',
