@@ -1,3 +1,18 @@
-<p>
-  wp-list-posts works!
-</p>
+<div id="wp-list-posts" class="container">
+<main id="main" *ngIf="posts && posts.length > 0">
+  <div class="post card my-2" *ngFor="let post of posts">
+    <div class="card-body">
+      <h3 class="card-title"><a routerLink="/post/{{post.slug}}">{{post.title.rendered}}</a></h3>
+      <h6 class="row card-subtitle post-info">
+        <div class="col-auto">
+          {{ post.date | date}}
+        </div>
+        <div class="col-auto">
+          <i class="fa fa-comment" aria-hidden="true"></i> Leave Comment
+        </div>
+      </h6>
+      <div class="card-text post-body" [innerHTML]="post.excerpt.rendered"></div>
+    </div>
+  </div>
+</main>
+</div>
