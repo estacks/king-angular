@@ -37,14 +37,18 @@ const routes: Routes = [
         setParams: {
           _embed: 1,
           slug: 'angular-test'
-          }} },
+        },
+        cache: true
+      }
+    },
     {
       path: 'blog', component: WpListPostsComponent,  resolve: { posts: WpResolver },
       data: {
         url: 'posts',
         setParams: {
           _embed: 1
-        }
+        },
+        cache: true
     }},
     { path: 'page/:slug', component: WpPageComponent, resolve: { pages: WpResolver },
       data: {

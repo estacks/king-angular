@@ -13,6 +13,7 @@ export class WpResolver implements Resolve<any> {
   queryParamMap: any = {};  //Maps queryParams to WP query params, angular => wp
   setParams: any = {};  //Directly assigns parameters to Wordpress query params, key => value
   validator = function(response) { return !!response };
+  private dataCache: any = {};
 
   constructor(
     private wp: WpService,
@@ -34,6 +35,8 @@ export class WpResolver implements Resolve<any> {
     if (route.data['validator']) this.validator = route.data['validator'];
     if (route.data['url']) this.url = route.data['url'];
 
+    let cache: boolean = route.data['cache'] ? true : false;
+
     //Get any Angular route parameters specified
     Object.keys(this.paramMap).forEach((key) => {
       let value = route.paramMap.get(key);
@@ -48,15 +51,31 @@ export class WpResolver implements Resolve<any> {
     //Assign any directly set parameters
     params = Object.assign(params, this.setParams);
 
+    let returnObserver;
+
     //console.log('Parameters', params, route.paramMap.keys, route.queryParamMap.keys);
 
-    return this.wp.get(this.url, {
-      params: params
-    }).pipe(
+    let identifier:string = this.url + JSON.stringify(params);
+    if (cache && this.dataCache[identifier]) {
+      returnObserver = Observable.create((observer) => {
+        observer.next(this.dataCache[identifier]);
+        observer.complete();
+      })
+    }
+    else {
+      returnObserver = this.wp.get(this.url, {
+        params: params
+      });
+    }
+
+    console.log('cache', cache);
+
+    return returnObserver.pipe(
       take(1),
       map(response => {
         console.log('Response', response);
         if (this.validator(response)) {
+          if (cache) this.dataCache[identifier] = response;
           return response;
         } else {
           console.log('Page Not Found', response, route.data)// Page not found
