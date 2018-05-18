@@ -4,5 +4,8 @@
     <div class="content rte">
       <eval-component [template]="page.content.rendered"></eval-component>
     </div>
+    <div class="replies" *ngIf="page._embedded && page._embedded.replies">
+      <list-replies [replies]="page._embedded.replies"></list-replies>
+    </div>
   </div>
 </div>

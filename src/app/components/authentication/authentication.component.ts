@@ -21,7 +21,7 @@ export class AuthenticationComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private user: UserService
+    public user: UserService
   ) { }
 
   ngOnInit() {

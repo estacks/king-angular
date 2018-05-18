@@ -17,6 +17,8 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { UserListComponent } from './components/user-list/user-list.component';
 import { PostNewComponent } from './components/post-new/post-new.component';
 import { WpPageComponent } from './pages/wp-page/wp-page.component';
+import { ListRepliesComponent } from './components/list-replies/list-replies.component';
+
 
 
 const routes: Routes = [
@@ -53,6 +55,7 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     WpPageComponent,
+    ListRepliesComponent
   ]
 })
 export class AppRoutingModule { }

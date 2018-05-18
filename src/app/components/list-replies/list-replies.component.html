@@ -1,0 +1,16 @@
+<div class="replies" *ngIf="replies && replies[0]">
+  <h4 class="replies-count">{{replies[0].length}} Comments</h4>
+  <div class="media" *ngFor="let reply of replies[0]">
+    <img
+      *ngIf="reply.author_avatar_urls && reply.author_avatar_urls[96]"
+      class="author-avatar mr-3"
+      [src]="reply.author_avatar_urls[96]"
+    >
+
+    <div class="media-body">
+      <h5 class="mt-0">{{reply.author_name}}</h5>
+      <h6 class="date">{{reply.date | date}}</h6>
+      <div class="reply-text" [innerHTML]="reply.content.rendered"></div>
+    </div>
+  </div>
+</div>

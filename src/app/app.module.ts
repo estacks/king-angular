@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
-
 export function WpApiLoaderFactory(http: Http) {
   return new WpApiStaticLoader(http, environment.url, /* namespace is optional, default: '/wp/v2' */);
 }
