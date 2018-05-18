@@ -7,12 +7,12 @@ import { map, take }              from 'rxjs/operators';
 import { WpService }  from './wp.service';
 
 @Injectable()
-export class WpResolverService implements Resolve<any> {
+export class WpResolver implements Resolve<any> {
   url: string;  //The URL fragment to access in the JSON API
   paramMap: any = {}; //Maps Angular route parameters to WP query parameters, angular => wp
   queryParamMap: any = {};  //Maps queryParams to WP query params, angular => wp
   setParams: any = {};  //Directly assigns parameters to Wordpress query params, key => value
-  validator = function(response) { return response && response.length > 0 };
+  validator = function(response) { return !!response };
 
   constructor(
     private wp: WpService,
@@ -26,6 +26,13 @@ export class WpResolverService implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> {
     let params = {};
+
+    //Map data inputs from the router to the resolver
+    if (route.data['paramMap']) this.paramMap = route.data['paramMap'];
+    if (route.data['queryParamMap']) this.queryParamMap = route.data['queryParamMap'];
+    if (route.data['setParams']) this.setParams = route.data['setParams'];
+    if (route.data['validator']) this.validator = route.data['validator'];
+    if (route.data['url']) this.url = route.data['url'];
 
     //Get any Angular route parameters specified
     Object.keys(this.paramMap).forEach((key) => {
@@ -48,9 +55,11 @@ export class WpResolverService implements Resolve<any> {
     }).pipe(
       take(1),
       map(response => {
+        console.log('Response', response);
         if (this.validator(response)) {
           return response;
-        } else { // Page not found
+        } else {
+          console.log('Page Not Found', response, route.data)// Page not found
           this.router.navigate(['/not-found']);
           return null;
         }

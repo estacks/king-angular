@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WpService } from 'src/app/services/wp.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,16 +16,12 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
-    private wp: WpService
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.wp.get('pages?slug=angular-test').subscribe((res: any) => {
-      console.log('Response', res);
-      console.log('Page Body', res[0].content.rendered);
-
-      this.pageText = res[0].content.rendered;
-    })
+    this.route.data.subscribe((data: { pages: Array<any> }) => {
+      this.pageText = data.pages[0].content.rendered;
+    });
   }
-
 }

@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "wp-copy": "cp -rf ./dist/* $KING_DEPLOY"
+    "wp-copy": "cp -rf ./dist/* $KING_DEPLOY",
+    "ngc": "ngc"
   },
   "private": true,
   "dependencies": {

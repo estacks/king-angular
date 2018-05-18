@@ -22,18 +22,49 @@ import { ListRepliesComponent } from './components/list-replies/list-replies.com
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
 import { WpPageComponent } from './pages/wp-page/wp-page.component';
-import { WpPageResolver } from './pages/wp-page/wp-page-resolver.service';
 import { WpPostComponent } from './pages/wp-post/wp-post.component';
-import { WpPostResolver } from './pages/wp-post/wp-post-resolver.service';
 import { WpListPostsComponent } from './pages/wp-list-posts/wp-list-posts.component';
-import { WpListPostsResolver } from './pages/wp-list-posts/wp-list-posts-resolver.service';
+
+import { WpResolver } from './services/wp-resolver.service';
 
 
 const routes: Routes = [
-    { path: 'home', component: HomeComponent },
-    { path: 'blog', component: WpListPostsComponent,  resolve: { posts: WpListPostsResolver }},
-    { path: 'page/:slug', component: WpPageComponent, resolve: { pages: WpPageResolver } },
-    { path: 'post/:slug', component: WpPostComponent, resolve: { posts: WpPostResolver } },
+    {
+      path: 'home', component: HomeComponent, resolve: { pages: WpResolver  },
+      data: {
+        url: 'pages',
+        setParams: {
+          _embed: 1,
+          slug: 'angular-test'
+          }} },
+    {
+      path: 'blog', component: WpListPostsComponent,  resolve: { posts: WpResolver },
+      data: {
+        url: 'posts',
+        setParams: {
+          _embed: 1
+        }
+    }},
+    { path: 'page/:slug', component: WpPageComponent, resolve: { pages: WpResolver },
+      data: {
+        url: 'pages',
+        setParams: {
+          _embed: 1
+        },
+        paramMap: {
+          slug: 'slug'
+        }
+      }},
+    { path: 'post/:slug', component: WpPostComponent, resolve: { posts: WpResolver },
+      data: {
+        url: 'posts',
+        setParams: {
+          _embed: 1
+        },
+        paramMap: {
+          slug: 'slug'
+        }
+      }},
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '', component: HeaderComponent, outlet: 'header' },
     { path: '', component: FooterComponent, outlet: 'footer' },
@@ -69,9 +100,7 @@ const routes: Routes = [
     WpListPostsComponent
   ],
   providers: [
-    WpPageResolver,
-    WpPostResolver,
-    WpListPostsResolver
+    WpResolver
   ]
 })
 export class AppRoutingModule { }
