@@ -9,14 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 export class WpPostComponent implements OnInit {
   post: string;
 
-  constructor(
-    public route: ActivatedRoute
-  ) {
-  }
+  constructor(public route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.data.subscribe((data: { posts: Array<any> }) => {
       this.post = data.posts[0];
-    })
+    });
   }
 }

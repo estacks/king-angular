@@ -8,7 +8,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { EvalComponentModule } from 'projects/eval-component/src/public_api';
 //import { EvalComponentModule } from 'eval-component';
 
-
 //Layouts
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
@@ -28,52 +27,64 @@ import { WpListPostsComponent } from './pages/wp-list-posts/wp-list-posts.compon
 
 import { WpResolver } from './services/wp-resolver.service';
 
-
 const routes: Routes = [
-    {
-      path: 'home', component: HomeComponent, resolve: { pages: WpResolver  },
-      data: {
-        url: 'pages',
-        setParams: {
-          _embed: 1,
-          slug: 'angular-test'
-        },
-        cache: true
+  {
+    path: 'home',
+    component: HomeComponent,
+    resolve: { pages: WpResolver },
+    data: {
+      url: 'pages',
+      setParams: {
+        _embed: 1,
+        slug: 'angular-test'
+      },
+      cache: true
+    }
+  },
+  {
+    path: 'blog',
+    component: WpListPostsComponent,
+    resolve: { posts: WpResolver },
+    data: {
+      url: 'posts',
+      setParams: {
+        _embed: 1
+      },
+      cache: true
+    }
+  },
+  {
+    path: 'page/:slug',
+    component: WpPageComponent,
+    resolve: { pages: WpResolver },
+    data: {
+      url: 'pages',
+      setParams: {
+        _embed: 1
+      },
+      paramMap: {
+        slug: 'slug'
       }
-    },
-    {
-      path: 'blog', component: WpListPostsComponent,  resolve: { posts: WpResolver },
-      data: {
-        url: 'posts',
-        setParams: {
-          _embed: 1
-        },
-        cache: true
-    }},
-    { path: 'page/:slug', component: WpPageComponent, resolve: { pages: WpResolver },
-      data: {
-        url: 'pages',
-        setParams: {
-          _embed: 1
-        },
-        paramMap: {
-          slug: 'slug'
-        }
-      }},
-    { path: 'post/:slug', component: WpPostComponent, resolve: { posts: WpResolver },
-      data: {
-        url: 'posts',
-        setParams: {
-          _embed: 1
-        },
-        paramMap: {
-          slug: 'slug'
-        }
-      }},
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '', component: HeaderComponent, outlet: 'header' },
-    { path: '', component: FooterComponent, outlet: 'footer' },
-    { path: '**', component: NotFoundComponent }
+    }
+  },
+  {
+    path: 'post/:slug',
+    component: WpPostComponent,
+    resolve: { posts: WpResolver },
+    data: {
+      url: 'posts',
+      setParams: {
+        _embed: 1
+      },
+      paramMap: {
+        slug: 'slug'
+      }
+    }
+  },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', component: HeaderComponent, outlet: 'header' },
+  { path: '', component: FooterComponent, outlet: 'footer' },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
@@ -89,7 +100,7 @@ const routes: Routes = [
     RouterModule,
     AuthenticationComponent,
     UserListComponent,
-    PostNewComponent,
+    PostNewComponent
   ],
   declarations: [
     AuthenticationComponent,
@@ -104,9 +115,9 @@ const routes: Routes = [
     WpPostComponent,
     WpListPostsComponent
   ],
-  providers: [
-    WpResolver
-  ],
-  schemas: [ /*NO_ERRORS_SCHEMA*/ ]
+  providers: [WpResolver],
+  schemas: [
+    /*NO_ERRORS_SCHEMA*/
+  ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

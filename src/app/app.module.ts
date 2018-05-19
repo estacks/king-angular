@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Http } from '@angular/http';
@@ -12,9 +12,7 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -22,7 +20,7 @@ import { environment } from '../environments/environment';
     MDBBootstrapModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, Title],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

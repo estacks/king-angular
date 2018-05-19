@@ -6,12 +6,13 @@ describe('WpPageComponent', () => {
   let component: WpPageComponent;
   let fixture: ComponentFixture<WpPageComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WpPageComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [WpPageComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WpPageComponent);

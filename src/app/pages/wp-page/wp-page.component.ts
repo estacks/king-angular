@@ -9,14 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 export class WpPageComponent implements OnInit {
   page: string;
 
-  constructor(
-    public route: ActivatedRoute
-  ) {
-  }
+  constructor(public route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.data.subscribe((data: { pages: Array<any> }) => {
       this.page = data.pages[0];
-    })
+    });
   }
 }

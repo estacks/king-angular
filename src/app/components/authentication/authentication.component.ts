@@ -13,16 +13,13 @@ export class AuthenticationComponent implements OnInit {
   userData = {
     username: '',
     password: ''
-  }
+  };
   @Input() token;
   @Output() tokenChange = new EventEmitter<string>();
 
   error: string;
 
-  constructor(
-    private http: HttpClient,
-    public user: UserService
-  ) { }
+  constructor(private http: HttpClient, public user: UserService) {}
 
   ngOnInit() {
     let userData = this.user.getData();
@@ -36,18 +33,19 @@ export class AuthenticationComponent implements OnInit {
   auth() {
     this.error = '';
 
-    this.user.login(this.userData)
-    .then((res: UserData) => {
-      console.log('User Logged in', res.token);
-      this.token = res.token;
-    }, err => {
-      console.log('User Not Logged In', err);
-      this.error = err.error.message;
-    });
+    this.user.login(this.userData).then(
+      (res: UserData) => {
+        console.log('User Logged in', res.token);
+        this.token = res.token;
+      },
+      err => {
+        console.log('User Not Logged In', err);
+        this.error = err.error.message;
+      }
+    );
   }
 
   logout() {
     return this.user.logout();
   }
-
 }

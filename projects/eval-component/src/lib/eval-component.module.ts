@@ -4,7 +4,6 @@ import { createCustomElement } from '@angular/elements';
 
 import { EvalComponentComponent } from './eval-component.component';
 
-
 @NgModule({
   imports: [BrowserModule],
   declarations: [EvalComponentComponent],
@@ -12,11 +11,12 @@ import { EvalComponentComponent } from './eval-component.component';
   entryComponents: [EvalComponentComponent]
 })
 export class EvalComponentModule {
-  constructor(private injector: Injector) {
-  }
+  constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
-    const customElement = createCustomElement(EvalComponentComponent, { injector: this.injector });
+    const customElement = createCustomElement(EvalComponentComponent, {
+      injector: this.injector
+    });
     customElements.define('eval-component', customElement);
   }
 }

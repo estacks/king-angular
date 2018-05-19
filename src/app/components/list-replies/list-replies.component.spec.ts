@@ -6,12 +6,13 @@ describe('ListRepliesComponent', () => {
   let component: ListRepliesComponent;
   let fixture: ComponentFixture<ListRepliesComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ListRepliesComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ListRepliesComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ListRepliesComponent);

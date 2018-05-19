@@ -1,4 +1,11 @@
-.hero {
+.hero-container {
+  background-position: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero-slide {
   width: 100vw;
   height: 100vh;
 }

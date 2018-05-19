@@ -61,5 +61,13 @@
     "tslib": "^1.7.1",
     "tslint": "~5.9.1",
     "typescript": "~2.7.2"
+  },
+  "prettier": {
+    "semi": true,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "arrowParens": "avoid"
   }
 }

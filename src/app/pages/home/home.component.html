@@ -1,12 +1,12 @@
 <!--<eval-component *ngIf="pageText" [template]="pageText" [data]="context"></eval-component>-->
-<main id="main page-home">
+<main id="main" class="page-home no-spacing">
     <!--<div class="hero d-flex flex-column justify-content-center align-items-center">
       <h1 class="title">{{title}}</h1>
       <h2 class="subtitle">< Software Developer ></h2>
     </div>-->
 
-    <div class="jarallax h-100" style="background-image: url(http://king.rocks/wp-content/uploads/2017/04/theravada-buddhism-1867793_1920.jpg); background-attachment: fixed;">
-        <div class="full-bg-img mask rgba-black-light">
+    <div class="hero-container" style="background-image: url(http://king.rocks/wp-content/uploads/2017/04/theravada-buddhism-1867793_1920.jpg); background-attachment: fixed;">
+        <div class="hero-slide full-bg-img mask rgba-black-light">
             <div class="container flex-center">
                 <div class="row pt-5 mt-3">
                     <div class="col-md-12 mb-3">
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="main container">
+    <div class="page container">
       <ul *ngIf="context.test">
         <li *ngFor="let string of test">{{string}}</li>
       </ul>

@@ -9,7 +9,10 @@ describe('WpService', () => {
     });
   });
 
-  it('should be created', inject([WpService], (service: WpService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([WpService], (service: WpService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

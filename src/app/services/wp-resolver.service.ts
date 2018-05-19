@@ -1,26 +1,27 @@
-import { Injectable }             from '@angular/core';
-import { Router, Resolve, RouterStateSnapshot,
-         ActivatedRouteSnapshot } from '@angular/router';
-import { Observable }             from 'rxjs';
-import { map, take }              from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import {
+  Router,
+  Resolve,
+  RouterStateSnapshot,
+  ActivatedRouteSnapshot
+} from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
-import { WpService }  from './wp.service';
+import { WpService } from './wp.service';
 
 @Injectable()
 export class WpResolver implements Resolve<any> {
-  url: string;  //The URL fragment to access in the JSON API
+  url: string; //The URL fragment to access in the JSON API
   paramMap: any = {}; //Maps Angular route parameters to WP query parameters, angular => wp
-  queryParamMap: any = {};  //Maps queryParams to WP query params, angular => wp
-  setParams: any = {};  //Directly assigns parameters to Wordpress query params, key => value
-  validator = function(response) { return !!response };
+  queryParamMap: any = {}; //Maps queryParams to WP query params, angular => wp
+  setParams: any = {}; //Directly assigns parameters to Wordpress query params, key => value
+  validator = function(response) {
+    return !!response;
+  };
   private dataCache: any = {};
 
-  constructor(
-    private wp: WpService,
-    private router: Router
-  ) {
-
-  }
+  constructor(private wp: WpService, private router: Router) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
@@ -30,7 +31,8 @@ export class WpResolver implements Resolve<any> {
 
     //Map data inputs from the router to the resolver
     if (route.data['paramMap']) this.paramMap = route.data['paramMap'];
-    if (route.data['queryParamMap']) this.queryParamMap = route.data['queryParamMap'];
+    if (route.data['queryParamMap'])
+      this.queryParamMap = route.data['queryParamMap'];
     if (route.data['setParams']) this.setParams = route.data['setParams'];
     if (route.data['validator']) this.validator = route.data['validator'];
     if (route.data['url']) this.url = route.data['url'];
@@ -38,15 +40,15 @@ export class WpResolver implements Resolve<any> {
     let cache: boolean = route.data['cache'] ? true : false;
 
     //Get any Angular route parameters specified
-    Object.keys(this.paramMap).forEach((key) => {
+    Object.keys(this.paramMap).forEach(key => {
       let value = route.paramMap.get(key);
       if (value) params[this.paramMap[key]] = value;
     });
 
-    Object.keys(this.queryParamMap).forEach((key) => {
+    Object.keys(this.queryParamMap).forEach(key => {
       let value = route.queryParamMap.get(key);
       if (value) params[this.queryParamMap[key]] = value;
-    })
+    });
 
     //Assign any directly set parameters
     params = Object.assign(params, this.setParams);
@@ -55,14 +57,13 @@ export class WpResolver implements Resolve<any> {
 
     //console.log('Parameters', params, route.paramMap.keys, route.queryParamMap.keys);
 
-    let identifier:string = this.url + JSON.stringify(params);
+    let identifier: string = this.url + JSON.stringify(params);
     if (cache && this.dataCache[identifier]) {
-      returnObserver = Observable.create((observer) => {
+      returnObserver = Observable.create(observer => {
         observer.next(this.dataCache[identifier]);
         observer.complete();
-      })
-    }
-    else {
+      });
+    } else {
       returnObserver = this.wp.get(this.url, {
         params: params
       });
@@ -78,7 +79,7 @@ export class WpResolver implements Resolve<any> {
           if (cache) this.dataCache[identifier] = response;
           return response;
         } else {
-          console.log('Page Not Found', response, route.data)// Page not found
+          console.log('Page Not Found', response, route.data); // Page not found
           this.router.navigate(['/not-found']);
           return null;
         }
@@ -86,7 +87,5 @@ export class WpResolver implements Resolve<any> {
     );
   }
 
-  createParamString(queryParamMap)  {
-
-  }
+  createParamString(queryParamMap) {}
 }

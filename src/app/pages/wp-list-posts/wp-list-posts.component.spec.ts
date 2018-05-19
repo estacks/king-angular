@@ -6,12 +6,13 @@ describe('WpListPostsComponent', () => {
   let component: WpListPostsComponent;
   let fixture: ComponentFixture<WpListPostsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WpListPostsComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [WpListPostsComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WpListPostsComponent);

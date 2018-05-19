@@ -1,0 +1,4 @@
+node_modules/**
+projects/**/node_modules/**
+dist/**
+assets/**

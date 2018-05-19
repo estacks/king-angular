@@ -7,10 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ListRepliesComponent implements OnInit {
   @Input() replies: any;
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

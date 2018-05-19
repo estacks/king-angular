@@ -1,4 +1,4 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo fixed-top scrolling-navbar">
   <logo>
     <a class="navbar-brand" routerLink="/">
       <img src="assets/logo.png" class="d-inline-block align-top" height="32" alt="Logo">
@@ -8,10 +8,10 @@
   <links>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLink="/home" [routerLinkActive]="'active'">
-        <a class="nav-link" routerLink="/home" [routerLinkActive]="'active'">About</a>
+        <a class="nav-link" mdbWavesEffect routerLink="/home" [routerLinkActive]="'active'">About</a>
       </li>
       <li class="nav-item" routerLink="/blog" [routerLinkActive]="'active'">
-        <a class="nav-link" routerLink="/blog" [routerLinkActive]="'active'">Blog</a>
+        <a class="nav-link" mdbWavesEffect routerLink="/blog" [routerLinkActive]="'active'">Blog</a>
       </li>
       <li class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light" id="navbarProjects" type="button">
