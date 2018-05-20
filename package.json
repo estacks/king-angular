@@ -25,7 +25,6 @@
     "@angular/router": "^6.0.0",
     "@nicky-lenaers/ngx-scroll-to": "^0.6.1",
     "angular-bootstrap-md": "^6.0.2",
-    "animate.css": "^3.6.1",
     "bootstrap": "^4.1.1",
     "chart.js": "^2.5.0",
     "core-js": "^2.5.4",
