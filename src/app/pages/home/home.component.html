@@ -11,10 +11,16 @@
                 <div class="row pt-5 mt-3">
                     <div class="col-md-12 mb-3">
                         <div class="intro-info-content text-center">
-                            <h1 class="display-3 mb-5 wow fadeInDown text-white" data-wow-delay="0.3s">ERIC KING</h1>
-                            <h5 class="font-up mb-5 mt-1 font-bold wow fadeInDown text-white" data-wow-delay="0.3s">Web & App Developer</h5>
-                            <a class="btn btn-light-blue btn-lg wow fadeInDown waves-light" data-wow-delay="0.3s" mdbWavesEffect routerLink="/page/projects">Projects</a>
-                            <a class="btn btn-indigo btn-lg wow fadeInDown waves-light" data-wow-delay="0.3s" mdbWavesEffect href="#intro">About me</a>
+                            <h1 id="main-title" class="display-3 mb-5 text-white" data-wow-delay="0.3s"><span class="d-none">Eric King</span><span id="main-title-display"></span></h1>
+                            <h2 id="sub-title" class="font-up mb-5 mt-1 font-bold text-white" data-wow-delay="0.3s"><span class="d-none">Software Developer</span><span id="sub-title-display"></span></h2>
+                            <div class="typed-container d-none" aria-hidden="true">
+                							<div id="main-title-text"><span>Eric King</span></div>
+                							<div id="sub-title-text"><span>&lt; Software Developer /&gt; </span></div>
+                						</div>
+                            <div id="cta-buttons" class="wow fadeInDown" data-wow-delay="2.5s">
+                              <a class="btn btn-light-blue btn-lg waves-light" mdbWavesEffect routerLink="/page/projects">Projects</a>
+                              <a class="btn btn-indigo btn-lg waves-light" mdbWavesEffect href="#intro">About me</a>
+                            </div>
                         </div>
                     </div>
                 </div>

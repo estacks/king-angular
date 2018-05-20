@@ -8,4 +8,18 @@
 .hero-slide {
   width: 100vw;
   height: 100vh;
+
+  h1:after,
+  .heading-underline:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    width: 100px;
+    height: 1px;
+    margin-left: -50px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    line-height: 0;
+  }
 }
