@@ -12,13 +12,6 @@ import { WpService } from './wp.service';
 
 @Injectable()
 export class WpResolver implements Resolve<any> {
-  url: string; //The URL fragment to access in the JSON API
-  paramMap: any = {}; //Maps Angular route parameters to WP query parameters, angular => wp
-  queryParamMap: any = {}; //Maps queryParams to WP query params, angular => wp
-  setParams: any = {}; //Directly assigns parameters to Wordpress query params, key => value
-  validator = function(response) {
-    return !!response;
-  };
   private dataCache: any = {};
 
   constructor(private wp: WpService, private router: Router) {}
@@ -27,55 +20,60 @@ export class WpResolver implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
+    let url: string;
     let params = {};
+    let paramMap: any = {};
+    let queryParamMap: any = {};
+    let setParams: any = {};
+    let validator = function(response) {
+      return !!response;
+    };
 
     //Map data inputs from the router to the resolver
-    if (route.data['paramMap']) this.paramMap = route.data['paramMap'];
+    if (route.data['paramMap']) paramMap = route.data['paramMap'];
     if (route.data['queryParamMap'])
-      this.queryParamMap = route.data['queryParamMap'];
-    if (route.data['setParams']) this.setParams = route.data['setParams'];
-    if (route.data['validator']) this.validator = route.data['validator'];
-    if (route.data['url']) this.url = route.data['url'];
+      queryParamMap = route.data['queryParamMap'];
+    if (route.data['setParams']) setParams = route.data['setParams'];
+    if (route.data['validator']) validator = route.data['validator'];
+    if (route.data['url']) url = route.data['url'];
 
     let cache: boolean = route.data['cache'] ? true : false;
 
     //Get any Angular route parameters specified
-    Object.keys(this.paramMap).forEach(key => {
+    Object.keys(paramMap).forEach(key => {
       let value = route.paramMap.get(key);
-      if (value) params[this.paramMap[key]] = value;
+      if (value) params[paramMap[key]] = value;
     });
 
-    Object.keys(this.queryParamMap).forEach(key => {
+    Object.keys(queryParamMap).forEach(key => {
       let value = route.queryParamMap.get(key);
-      if (value) params[this.queryParamMap[key]] = value;
+      if (value) params[queryParamMap[key]] = value;
     });
 
     //Assign any directly set parameters
-    params = Object.assign(params, this.setParams);
+    params = Object.assign(params, setParams);
 
     let returnObserver;
 
     //console.log('Parameters', params, route.paramMap.keys, route.queryParamMap.keys);
 
-    let identifier: string = this.url + JSON.stringify(params);
+    let identifier: string = url + JSON.stringify(params);
     if (cache && this.dataCache[identifier]) {
       returnObserver = Observable.create(observer => {
         observer.next(this.dataCache[identifier]);
         observer.complete();
       });
     } else {
-      returnObserver = this.wp.get(this.url, {
+      returnObserver = this.wp.get(url, {
         params: params
       });
     }
 
-    console.log('cache', cache);
-
     return returnObserver.pipe(
       take(1),
       map(response => {
-        console.log('Response', response);
-        if (this.validator(response)) {
+        //console.log('Response', response);
+        if (validator(response)) {
           if (cache) this.dataCache[identifier] = response;
           return response;
         } else {
