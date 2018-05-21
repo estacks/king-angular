@@ -15,11 +15,13 @@ import { environment } from '../environments/environment';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     ScrollToModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     AppRoutingModule
   ],
+  exports: [FormsModule],
   providers: [httpInterceptorProviders, Title],
   bootstrap: [AppComponent]
 })

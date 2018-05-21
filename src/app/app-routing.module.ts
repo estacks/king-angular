@@ -1,7 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -91,6 +91,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ScrollToModule,
     EvalComponentModule,
     MDBBootstrapModule,
@@ -98,6 +99,7 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule,
+    FormsModule,
     AuthenticationComponent,
     UserListComponent,
     PostNewComponent
