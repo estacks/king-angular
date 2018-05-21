@@ -1,44 +1,113 @@
 <main id="main" class="wp-post container" *ngIf="post">
-    <h2>{{post.title.rendered}}</h2>
-    <div class="content rte">
-      <eval-component [template]="post.content.rendered"></eval-component>
-    </div>
-    <div class="replies" *ngIf="post._embedded && post._embedded.replies">
-      <list-replies [replies]="post._embedded.replies"></list-replies>
-    </div>
-    <div class="reply-form mt-4 card">
-      <!-- Material form contact -->
-<form id="form-reply" class="card-body" #formReply="ngForm">
-    <p class="h4 mb-4">Leave A Reply!</p>
+<section class="wp-post">
 
-    <!-- Material input text -->
-    <div class="form-group">
-      <label for="form-reply-name"><i class="fa fa-user prefix grey-text"></i> Your name</label>
-      <input type="text" id="form-reply-name" class="form-control" #formName name="reply-name" [(ngModel)]="reply.name">
-    </div>
+  <!-- Grid row -->
+  <div class="row">
 
-    <!-- Material input email -->
-    <div class="form-group">
-      <label for="form-reply-email"><i class="fa fa-envelope prefix grey-text"></i> Your email</label>
-      <input type="email" id="form-reply-email" class="form-control" #formEmail name="reply-email" [(ngModel)]="reply.email">
-    </div>
+    <!-- Grid column -->
+    <div class="col-md-12">
 
-    <!-- Material input subject -->
-    <div class="form-group">
-      <label for="form-reply-website"><i class="fa fa-link prefix grey-text"></i> Website</label>
-      <input type="text" id="form-reply-website" class="form-control" #formWebsite name="reply-website" [(ngModel)]="reply.website">
-    </div>
+      <!-- Card -->
+      <div class="card card-cascade wider reverse">
 
-    <!-- Material textarea message -->
-    <div class="form-group">
-      <label for="form-reply-body"><i class="fa fa-pencil prefix grey-text"></i> Your message</label>
-      <textarea type="text" id="form-reply-body" class="form-control md-textarea" rows="3" #formBody name="reply-body" [(ngModel)]="reply.body"></textarea>
-    </div>
+        <!-- Card image -->
+        <div class="view overlay">
+          <img *ngIf="post.better_featured_image" class="card-img-top post-image-top" [src]="post.better_featured_image.source_url" [alt]="post.better_featured_image.alt_text">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
 
-    <div class="text-center mt-4">
-        <button class="btn btn-outline-primary" type="submit">Send<i class="fa fa-paper-plane-o ml-2"></i></button>
+        <!-- Card content -->
+        <div class="card-body text-center">
+
+          <!-- Title -->
+          <h2 class="font-weight-bold">{{post.title.rendered}}</h2>
+          <!-- Data -->
+          <p>Written by <a><strong>{{post._embedded.author[0].name}}</strong></a>, {{post.date | date}}</p>
+          <!-- Social shares -->
+          <div class="social-counters">
+            <!-- Facebook -->
+            <a class="btn btn-fb brand-facebook">
+              <i class="fa fa-facebook pr-2"></i>
+              <span class="clearfix d-none d-md-inline-block">Facebook</span>
+            </a>
+            <!-- Twitter -->
+            <a class="btn btn-tw brand-twitter">
+              <i class="fa fa-twitter pr-2"></i>
+              <span class="clearfix d-none d-md-inline-block">Twitter</span>
+            </a>
+            <!-- Google+ -->
+            <a class="btn btn-gplus brand-google">
+              <i class="fa fa-google-plus pr-2"></i>
+              <span class="clearfix d-none d-md-inline-block">Google+</span>
+            </a>
+            <!-- Comments -->
+            <a class="btn btn-default">
+              <i class="fa fa-comments-o pr-2"></i>
+              <span class="clearfix d-none d-md-inline-block">Comments</span>
+            </a>
+          </div>
+          <!-- Social shares -->
+
+        </div>
+        <!-- Card content -->
+
+      </div>
+      <!-- Card -->
+
+      <!-- Excerpt -->
+      <div class="content rte mt-4">
+        <eval-component [template]="post.content.rendered"></eval-component>
+      </div>
+
+      <div class="reply-form mt-4 card wow fadeInRight">
+        <!-- Material form contact -->
+  <form id="form-reply" class="card-body" #formReply="ngForm">
+      <p class="h4 mb-4">Leave A Reply!</p>
+
+      <!-- Material input text -->
+      <div class="form-group">
+        <label for="form-reply-name"><i class="fa fa-user prefix grey-text"></i> Your name</label>
+        <input type="text" id="form-reply-name" class="form-control" #formName name="reply-name" [(ngModel)]="reply.name">
+      </div>
+
+      <!-- Material input email -->
+      <div class="form-group">
+        <label for="form-reply-email"><i class="fa fa-envelope prefix grey-text"></i> Your email</label>
+        <input type="email" id="form-reply-email" class="form-control" #formEmail name="reply-email" [(ngModel)]="reply.email">
+      </div>
+
+      <!-- Material input subject -->
+      <div class="form-group">
+        <label for="form-reply-website"><i class="fa fa-link prefix grey-text"></i> Website</label>
+        <input type="text" id="form-reply-website" class="form-control" #formWebsite name="reply-website" [(ngModel)]="reply.website">
+      </div>
+
+      <!-- Material textarea message -->
+      <div class="form-group">
+        <label for="form-reply-body"><i class="fa fa-pencil prefix grey-text"></i> Your message</label>
+        <textarea type="text" id="form-reply-body" class="form-control md-textarea" rows="3" #formBody name="reply-body" [(ngModel)]="reply.body"></textarea>
+      </div>
+
+      <div class="text-center mt-4">
+          <button class="btn btn-outline-primary" type="submit">Send<i class="fa fa-paper-plane-o ml-2"></i></button>
+      </div>
+  </form>
+  <!-- Material form contact -->
+      </div>
+
+      <div class="replies mt-4" *ngIf="post._embedded && post._embedded.replies">
+        <list-replies [replies]="post._embedded.replies"></list-replies>
+      </div>
+
     </div>
-</form>
-<!-- Material form contact -->
-    </div>
+    <!-- Grid column -->
+
+  </div>
+  <!-- Grid row -->
+
+  <hr class="mb-5 mt-4">
+
+</section>
 </main>

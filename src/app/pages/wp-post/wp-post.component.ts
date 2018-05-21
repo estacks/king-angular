@@ -20,6 +20,8 @@ export class WpPostComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: { posts: Array<any> }) => {
       this.post = data.posts[0];
+
+      console.debug('(wp-post-component.ts) => Loaded Post', this.post);
     });
   }
 }

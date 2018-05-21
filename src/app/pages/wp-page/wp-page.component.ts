@@ -8,6 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WpPageComponent implements OnInit {
   page: string;
+  reply = {
+    name: '',
+    email: '',
+    website: '',
+    body: ''
+  };
 
   constructor(public route: ActivatedRoute) {}
 
