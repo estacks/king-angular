@@ -61,36 +61,42 @@
         <eval-component [template]="post.content.rendered"></eval-component>
       </div>
 
-      <div class="reply-form mt-4 card wow fadeInRight">
+        <hr class="mb-4 mt-4">
+
+      <div class="reply-form wow fadeInRight">
         <!-- Material form contact -->
   <form id="form-reply" class="card-body" #formReply="ngForm">
       <p class="h4 mb-4">Leave A Reply!</p>
 
       <!-- Material input text -->
-      <div class="form-group">
-        <label for="form-reply-name"><i class="fa fa-user prefix grey-text"></i> Your name</label>
-        <input type="text" id="form-reply-name" class="form-control" #formName name="reply-name" [(ngModel)]="reply.name">
+      <div class="md-form">
+        <i class="fa fa-user prefix grey-text"></i>
+        <input mdbInputDirective type="text" data-error="Please enter a name" data-success=" " min="5" max="25" id="form-reply-name" class="form-control" #formName name="reply-name" [(ngModel)]="reply.name">
+        <label for="form-reply-name">Your name</label>
       </div>
 
       <!-- Material input email -->
-      <div class="form-group">
-        <label for="form-reply-email"><i class="fa fa-envelope prefix grey-text"></i> Your email</label>
-        <input type="email" id="form-reply-email" class="form-control" #formEmail name="reply-email" [(ngModel)]="reply.email">
+      <div class="md-form">
+        <i class="fa fa-envelope prefix grey-text"></i>
+        <input mdbInputDirective type="email" data-error="Invalid email" data-success=" " id="form-reply-email" class="form-control" #formEmail name="reply-email" [(ngModel)]="reply.email">
+        <label for="form-reply-email">Your email</label>
       </div>
 
       <!-- Material input subject -->
-      <div class="form-group">
-        <label for="form-reply-website"><i class="fa fa-link prefix grey-text"></i> Website</label>
-        <input type="text" id="form-reply-website" class="form-control" #formWebsite name="reply-website" [(ngModel)]="reply.website">
+      <div class="md-form">
+        <i class="fa fa-link prefix grey-text"></i>
+        <input mdbInputDirective type="text" id="form-reply-website" data-success=" " class="form-control" min="0" optional="true" max="140" #formWebsite name="reply-website" [(ngModel)]="reply.website">
+        <label for="form-reply-website">Website</label>
       </div>
 
       <!-- Material textarea message -->
-      <div class="form-group">
-        <label for="form-reply-body"><i class="fa fa-pencil prefix grey-text"></i> Your message</label>
-        <textarea type="text" id="form-reply-body" class="form-control md-textarea" rows="3" #formBody name="reply-body" [(ngModel)]="reply.body"></textarea>
-      </div>
+      <div class="md-form">
+        <i class="fa fa-pencil prefix grey-text"></i>
+        <textarea mdbInputDirective type="text" id="form-reply-body" data-error="Please make your post" data-success=" " min="5" max="4096" class="form-control md-textarea" rows="2" #formBody name="reply-body" [(ngModel)]="reply.body"></textarea>
+        <label for="form-reply-body">Your message</label>
+      </div> 
 
-      <div class="text-center mt-4">
+      <div class="mt-4">
           <button class="btn btn-outline-primary" type="submit">Send<i class="fa fa-paper-plane-o ml-2"></i></button>
       </div>
   </form>

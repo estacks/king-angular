@@ -9,6 +9,10 @@
   padding-top: 0;
 }
 
+.content ng-component {
+  white-space: pre-wrap;
+}
+
 body {
   font-family: 'Raleway', sans-serif;
 }
@@ -25,36 +29,36 @@ h6,
 }
 
 .brand-google {
-  background-color: #DB4437;
-  color: #FFFFFF !important;
+  background-color: #db4437;
+  color: #ffffff !important;
 }
 
 .brand-facebook {
-  background-color: #3B5998;
-  color: #FFFFFF !important;
+  background-color: #3b5998;
+  color: #ffffff !important;
 }
 
 .brand-twitter {
-  background-color: #1DA1F2;
-  color: #FFFFFF !important;
+  background-color: #1da1f2;
+  color: #ffffff !important;
 }
 
 .brand-pinterest {
-  background-color: #BD081C;
-  color: #FFFFFF !important;
+  background-color: #bd081c;
+  color: #ffffff !important;
 }
 
 .brand-snapchat {
-  background-color: #FFFC00;
-  color: #FFFFFF !important;
+  background-color: #fffc00;
+  color: #ffffff !important;
 }
 
 .brand-instagram {
   background-color: #262626;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .brand-linkedin {
-  background-color: #0077B5;
-  color: #FFFFFF !important;
+  background-color: #0077b5;
+  color: #ffffff !important;
 }
