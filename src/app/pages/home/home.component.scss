@@ -23,3 +23,9 @@
     line-height: 0;
   }
 }
+
+#main-title,
+#sub-title {
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}

@@ -46,7 +46,8 @@ export class HomeComponent implements OnInit, AfterContentInit {
       stringsElement: '#sub-title-text',
       startDelay: 2000,
       typeSpeed: 20,
-      showCursor: false
+      showCursor: true,
+      autoInsertCss: true
     });
   }
 
