@@ -57,13 +57,13 @@
       <!-- Card -->
 
       <!-- Excerpt -->
-      <div class="content rte mt-4">
+      <div class="content rte mt-4 wow fadeInUp" data-wow-duration="0.7s">
         <eval-component [template]="page.content.rendered"></eval-component>
       </div>
 
         <hr class="mb-4 mt-4">
 
-      <div class="reply-form wow fadeInRight">
+      <div class="reply-form wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s" data-wow-offset="200">
         <!-- Material form contact -->
   <form id="form-reply" class="card-body" #formReply="ngForm">
       <p class="h4 mb-4">Leave A Reply!</p>
@@ -103,7 +103,7 @@
   <!-- Material form contact -->
       </div>
 
-      <div class="replies mt-4" *ngIf="page._embedded && page._embedded.replies">
+      <div class="replies mt-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s" *ngIf="page._embedded && page._embedded.replies">
         <list-replies [replies]="page._embedded.replies"></list-replies>
       </div>
 

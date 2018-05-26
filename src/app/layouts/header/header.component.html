@@ -1,4 +1,4 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo fixed-top scrolling-navbar">
+<mdb-navbar [ngClass]="{'transparent': isTransparent}" [SideClass]="navClass">
   <logo>
     <a class="navbar-brand" routerLink="/">
       <img src="assets/logo.png" class="d-inline-block align-top" height="32" alt="Logo">

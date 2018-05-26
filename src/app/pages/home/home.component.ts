@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import * as Typed from 'typed.js';
 
+import { WpService } from 'src/app/services/wp.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,10 +19,17 @@ export class HomeComponent implements OnInit, AfterContentInit {
     test: ['One', 'Two', 'Butt']
   };
 
-  constructor(private route: ActivatedRoute, private title: Title) {}
+  constructor(
+    private route: ActivatedRoute,
+    private title: Title,
+    private wp: WpService
+  ) {}
 
   ngOnInit() {
     this.title.setTitle('Welcome');
+
+    this.wp.setStore('TransparentHeader', true);
+
     this.route.data.subscribe((data: { pages: Array<any> }) => {
       this.pageText = data.pages[0].content.rendered;
     });
@@ -39,5 +48,9 @@ export class HomeComponent implements OnInit, AfterContentInit {
       typeSpeed: 20,
       showCursor: false
     });
+  }
+
+  ngOnDestroy() {
+    this.wp.setStore('TransparentHeader', false);
   }
 }

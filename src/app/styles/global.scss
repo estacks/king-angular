@@ -28,6 +28,10 @@ h6,
   font-family: 'Oswald', sans-serif;
 }
 
+nav.transparent:not(.top-nav-collapse) {
+  background-color: transparent !important;
+}
+
 .brand-google {
   background-color: #db4437;
   color: #ffffff !important;

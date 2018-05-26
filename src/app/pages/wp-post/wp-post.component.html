@@ -57,13 +57,13 @@
       <!-- Card -->
 
       <!-- Excerpt -->
-      <div class="content rte mt-4">
+      <div class="content rte mt-4 wow fadeInUp" data-wow-duration="0.7s">
         <eval-component [template]="post.content.rendered"></eval-component>
       </div>
 
         <hr class="mb-4 mt-4">
 
-      <div class="reply-form wow fadeInRight">
+      <div class="reply-form wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s">
         <!-- Material form contact -->
   <form id="form-reply" class="card-body" #formReply="ngForm">
       <p class="h4 mb-4">Leave A Reply!</p>
@@ -94,7 +94,7 @@
         <i class="fa fa-pencil prefix grey-text"></i>
         <textarea mdbInputDirective type="text" id="form-reply-body" data-error="Please make your post" data-success=" " min="5" max="4096" class="form-control md-textarea" rows="2" #formBody name="reply-body" [(ngModel)]="reply.body"></textarea>
         <label for="form-reply-body">Your message</label>
-      </div> 
+      </div>
 
       <div class="mt-4">
           <button class="btn btn-outline-primary" type="submit">Send<i class="fa fa-paper-plane-o ml-2"></i></button>
@@ -103,7 +103,7 @@
   <!-- Material form contact -->
       </div>
 
-      <div class="replies mt-4" *ngIf="post._embedded && post._embedded.replies">
+      <div class="replies mt-4 wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s" *ngIf="post._embedded && post._embedded.replies">
         <list-replies [replies]="post._embedded.replies"></list-replies>
       </div>
 
