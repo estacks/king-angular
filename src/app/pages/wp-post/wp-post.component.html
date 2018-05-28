@@ -12,8 +12,8 @@
 
         <!-- Card image -->
         <div class="view overlay">
-          <img *ngIf="post.better_featured_image" class="card-img-top post-image-top" [src]="post.better_featured_image.source_url" [alt]="post.better_featured_image.alt_text">
-          <a [href]="post.better_featured_image.source_url">
+          <img *ngIf="post.better_featured_image" class="card-img-top" [src]="post.better_featured_image.source_url" [alt]="post.better_featured_image.alt_text">
+          <a [href]="post.better_featured_image.source_url" target="_blank">
             <div class="mask rgba-white-slight"></div>
           </a>
         </div>
@@ -52,7 +52,7 @@
           <hr class="my-4">
 
           <!-- Excerpt -->
-          <div class="content rte mt-4 wow fadeInUp" data-wow-duration="0.7s">
+          <div class="content rte mt-4" data-wow-duration="0.7s">
             <eval-component [template]="post.content.rendered"></eval-component>
           </div>
 

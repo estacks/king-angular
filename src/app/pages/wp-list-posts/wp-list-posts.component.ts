@@ -8,10 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WpListPostsComponent implements OnInit {
   posts: Array<any>;
+  title: string = 'Archive';
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
+    if (this.route.snapshot.data.title)
+      this.title = this.route.snapshot.data.title;
+
     this.route.data.subscribe((data: { posts: Array<any> }) => {
       this.posts = data.posts;
 

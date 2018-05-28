@@ -33,6 +33,7 @@ const routes: Routes = [
     component: HomeComponent,
     resolve: { pages: WpResolver },
     data: {
+      title: 'Home',
       url: 'pages',
       setParams: {
         _embed: 1,
@@ -50,7 +51,8 @@ const routes: Routes = [
       setParams: {
         _embed: 1
       },
-      cache: true
+      cache: true,
+      title: 'Blog'
     }
   },
   {
@@ -84,7 +86,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '', component: HeaderComponent, outlet: 'header' },
   { path: '', component: FooterComponent, outlet: 'footer' },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent, data: { title: '404 Not Found' } }
 ];
 
 @NgModule({

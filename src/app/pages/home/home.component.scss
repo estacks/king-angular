@@ -12,12 +12,23 @@ main#main {
 .hero-slide {
   width: 100vw;
   height: 100vh;
+  min-height: 600px;
+
+  .control-arrow {
+    color: #fff;
+    position: absolute;
+    bottom: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 200%;
+  }
 }
 
 #main-title,
-#sub-title {
+#sub-title,
+.control-arrow {
   letter-spacing: 1px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
 #sub-title-display {

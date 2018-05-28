@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 import * as Typed from 'typed.js';
 
 import { WpService } from 'src/app/services/wp.service';
@@ -19,15 +18,9 @@ export class HomeComponent implements OnInit, AfterContentInit {
     test: ['One', 'Two', 'Butt']
   };
 
-  constructor(
-    private route: ActivatedRoute,
-    private title: Title,
-    private wp: WpService
-  ) {}
+  constructor(private route: ActivatedRoute, private wp: WpService) {}
 
   ngOnInit() {
-    this.title.setTitle('Welcome');
-
     this.wp.setStore('TransparentHeader', true);
 
     this.route.data.subscribe((data: { pages: Array<any> }) => {
