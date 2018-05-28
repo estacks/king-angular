@@ -17,6 +17,7 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { UserListComponent } from './components/user-list/user-list.component';
 import { PostNewComponent } from './components/post-new/post-new.component';
 import { ListRepliesComponent } from './components/list-replies/list-replies.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 //Routed pages
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -108,6 +109,7 @@ const routes: Routes = [
   ],
   declarations: [
     AuthenticationComponent,
+    LoadingSpinnerComponent,
     UserListComponent,
     PostNewComponent,
     HomeComponent,
