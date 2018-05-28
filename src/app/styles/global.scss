@@ -145,3 +145,42 @@ nav.transparent:not(.top-nav-collapse) {
     border-radius: 0 0 0.25rem 0.25rem;
   }
 }
+
+/*
+  Header underlines
+*/
+h1:after,
+.h-ul:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  width: 25px;
+  height: 1px;
+  transform: translateX(-50%);
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  line-height: 0;
+}
+
+.h-ul {
+  text-align: center;
+}
+
+/*
+  Navbar
+*/
+$logo-size-lg: 100px;
+$logo-size: 48px;
+
+.navbar-brand img,
+nav.navbar.transparent.top-nav-collapse .navbar-brand > img {
+  max-width: $logo-size;
+  max-height: $logo-size;
+  transition: all 0.2s ease-in-out;
+}
+
+nav.navbar.transparent .navbar-brand > img {
+  max-width: $logo-size-lg;
+  max-height: $logo-size-lg;
+}

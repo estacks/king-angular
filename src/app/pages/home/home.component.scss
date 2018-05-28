@@ -1,33 +1,23 @@
-.hero-container {
+main#main {
   background-position: fixed;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
+  h1 {
+    font-family: 'Raleway', sans-serif;
+  }
 }
 
 .hero-slide {
   width: 100vw;
   height: 100vh;
-
-  h1:after,
-  .heading-underline:after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 50%;
-    width: 100px;
-    height: 1px;
-    margin-left: -50px;
-    border-bottom-width: 3px;
-    border-bottom-style: solid;
-    line-height: 0;
-  }
 }
 
 #main-title,
 #sub-title {
   letter-spacing: 1px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 #sub-title-display {
@@ -36,7 +26,16 @@
 
 .cta-buttons {
   .btn {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(245, 25, 0, 0.8);
     border: 1px #fff solid;
+
+    &:hover {
+      color: #fff;
+      background: rgba(245, 25, 0, 1);
+    }
   }
+}
+
+.content {
+  background: #fff;
 }

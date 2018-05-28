@@ -1,12 +1,12 @@
 <!--<eval-component *ngIf="pageText" [template]="pageText" [data]="context"></eval-component>-->
-<main id="main" class="page-home no-spacing">
+<main id="main" class="page-home no-spacing full-bg-img mask rgba-black-light"  style="background-image: url(http://king.rocks/wp-content/uploads/2018/05/abstract-darkened.jpg); background-attachment: fixed;">
     <!--<div class="hero d-flex flex-column justify-content-center align-items-center">
       <h1 class="title">{{title}}</h1>
       <h2 class="subtitle">< Software Developer ></h2>
     </div>-->
 
-    <div class="hero-container" style="background-image: url(http://king.rocks/wp-content/uploads/2017/04/theravada-buddhism-1867793_1920.jpg); background-attachment: fixed;">
-        <div class="hero-slide full-bg-img mask rgba-black-light">
+    <a [ngx-scroll-to]="'#intro'" [ngx-scroll-to-offset]="-100"><div class="hero-container">
+        <div class="hero-slide">
             <div class="container flex-center">
                 <div class="row pt-5 mt-3">
                     <div class="col-md-12 mb-3">
@@ -23,32 +23,88 @@
                         </div>
                     </div>
                 </div>
+                <div class="control-arrow"></div>
             </div>
         </div>
-    </div>
+    </div></a>
 
     <div class="page container">
+      <div class="sub-container white z-depth-2 p-4">
       <ul *ngIf="context.test">
         <li *ngFor="let string of test">{{string}}</li>
       </ul>
-      <div class="intro row" id="intro">
+      <section class="content row" id="intro">
         <div class="col-12 col-md-6">
-          <h3>Who I Am</h3>
+          <h3 class="text-center">Who I Am</h3>
           <p>I have over 10 years of experience programming in Javascript, PHP, C++, and various other languages. For freelance development my specialties are: <b>Wordpress</b>, <b>Angular</b>, <b>Shopify</b>, and <b>Node.js</b>. Before freelancing I worked on computational physics research creating and analyzing simulations of cancer cells!</p>
         </div>
         <div class="col-12 col-md-6">
-          <h3>Interests</h3>
+          <h3 class="text-center">Interests</h3>
           <p>My main hobbies have always been programming and working out. I’m a big fan of biking, weightlifting, and boxing! Some of my favorite books are A Brief History of Time, Hitchhiker’s Guide to the Galaxy, 48 Laws of Power, and the Wheel of Time series.</p>
         </div>
-      </div>
-      <div class="content" id="what-i-offer">
-        <h3>What I Offer</h3>
+      </section>
+      <hr>
+      <section class="content" id="what-i-offer">
+        <h3 class="text-center">What I Offer</h3>
         <p><b>Want to build a website for your business or storefront?</b> I'm your guy. Need a full stack developer to build you a mobile app? Also your guy.</p>
         <p><b>No experience required on your end!</b> I can walk you from your concept through getting a domain, logo, and building a digital business in a way that works best for you. I will work with any of your current branding and/or designers to deliver you a high-quality, cohesive experience.</p>
-      </div>
-      <div class="content" id="do-i-really">
-        <h3>Do You Need a Website?</h3>
-        <p><b>YES!</b> You are missing out on a <u>lot</u> of revenue, word of mouth, and customers if you are missing a high-quality website as a business of any size.</p>
+      </section>
+      <hr>
+      <section class="content row my-4" id="projects">
+        <div class="col-12"><h3 class="text-center">Recent Projects</h3></div>
+        <div class="col-md-12 my-4">
+          <div class="card card-image" style="background-image: url(https://platstar.com/wp-content/uploads/2017/10/icon-transparent.png)">
+            <div class="text-white text-center justify-content-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+              <div>
+                <h6 class="blue-text"><i class="fa fa-plane"></i> Travel</h6>
+                <h3 class="py-3 font-weight-bold">
+                  Platstar
+                </h3>
+                <p class="pb-2 lead">A location-based social network app to let people chat, meet up, and see who is at events or places in realtime.</p>
+                <p class="pb-3 tools-used">Angular, Ionic, Node.js, Wordpress</p>
+                <a href="https://platstar.com/" target="_blank" class="btn btn-primary btn-rounded btn-md  waves-light" mdbWavesEffect>
+                            <i class="fa fa-clone left"></i> View project</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card card-image" style="background-image: url(https://cdn.shopify.com/s/files/1/2596/7876/t/2/assets/logo.png?12738769614102003412)">
+            <div class="text-white text-center justify-content-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+              <div>
+                <h6 class="blue-text"><i class="fa fa-plane"></i> Travel</h6>
+                <h3 class="py-3 font-weight-bold">
+                  Colorado Board Company
+                </h3>
+                <p class="pb-2 lead">A Colorado native company selling skateboards, skis, and other sports equipment.</p>
+                <p class="pb-3 tools-used">Shopify, SASS, Liquid</p>
+                <a href="https://coloradoboardcompany.com" target="_blank" class="btn btn-primary btn-rounded btn-md  waves-light" mdbWavesEffect>
+                            <i class="fa fa-clone left"></i> View project</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card card-image" style="background-image: url(http://rideobx.com/wp-content/uploads/2017/10/the-outer-banks-1094684_1280.jpg)">
+            <div class="text-white text-center justify-content-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+              <div>
+                <h6 class="blue-text"><i class="fa fa-plane"></i> Travel</h6>
+                <h3 class="py-3 font-weight-bold">
+                  Sweet Rides
+                </h3>
+                <p class="pb-2 lead">An electric bike and scooter rental company based in the Outer Banks of North Carolina.</p>
+                <p class="pb-3 tools-used">Wordpress, jQuery</p>
+                <a href="https://rideobx.com" target="_blank" class="btn btn-primary btn-rounded btn-md  waves-light" mdbWavesEffect>
+                            <i class="fa fa-clone left"></i> View project</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr>
+      <section class="content" id="do-i-really">
+        <h3 class="text-center">Do You Need a Website?</h3>
+        <p class="lead"><b>YES!</b> You are missing out on a <u>lot</u> of revenue, word of mouth, and customers if you are missing a high-quality website as a business of any size.</p>
         <div><h4>Why?</h4>
           <ul>
             <li>Digitally connected small businesses experience:
@@ -68,11 +124,11 @@
             <li>Much more professional business email. Drop that Gmail account for yourname@yourcompany.com!</li>
           </ul>
         </div>
-      </div>
-      
-      <div class="content" id="skills">
-        <h3>Skills</h3>
-        <p>For the more technical people these are skills I'm very confident in, whatever your project may be:</p>
+      </section>
+      <hr>
+      <section class="content" id="skills">
+        <h3 class="text-center">Skills</h3>
+        <p>These are skills I am very proficient in, whatever your project may be:</p>
         <ul id="skills-list">
           <li><h5>Wordpress</h5>
             <ul>
@@ -155,9 +211,11 @@
                   </li>
                 </ul>
               </li>
+              <li>Server Setup & Configuration</li>
             </ul>
           </li>
         </ul>
-      </div>
+      </section>
+    </div>
   </div>
 </main>

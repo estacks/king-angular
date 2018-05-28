@@ -23,7 +23,7 @@ export class UserService {
     this.validateToken();
   }
 
-  login(options: UserLoginOptions) {
+  login(options: UserLoginOptions): Promise<any> {
     console.log('UserService.login', options);
 
     return new Promise((resolve, reject) => {
