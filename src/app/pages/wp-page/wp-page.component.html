@@ -8,14 +8,14 @@
     <div class="col-md-12">
 
       <!-- Card -->
-      <div class="card card-cascade wider reverse">
+      <div class="card card-cascade wider">
 
         <!-- Card image -->
-        <div class="view overlay">
-          <img *ngIf="page.better_featured_image" class="card-img-top page-image-top" [src]="page.better_featured_image.source_url" [alt]="page.better_featured_image.alt_text">
-          <a href="#!">
-            <div class="mask rgba-white-slight"></div>
-          </a>
+        <div class="view overlay" *ngIf="page.better_featured_image">
+            <img class="card-img-top page-image-top" [src]="page.better_featured_image.source_url" [alt]="page.better_featured_image.alt_text">
+            <a [href]="page.better_featured_image.source_url">
+              <div class="mask rgba-white-slight"></div>
+            </a>
         </div>
 
         <!-- Card content -->
@@ -48,22 +48,22 @@
               <span class="clearfix d-none d-md-inline-block">Comments</span>
             </a>
           </div>
+
+          <hr class="my-4">
+
+          <!-- Excerpt -->
+          <div class="content rte mt-4 wow fadeInUp" data-wow-duration="0.7s">
+            <eval-component [template]="page.content.rendered"></eval-component>
+          </div>
+
           <!-- Social shares -->
 
         </div>
         <!-- Card content -->
 
       </div>
-      <!-- Card -->
 
-      <!-- Excerpt -->
-      <div class="content rte mt-4 wow fadeInUp" data-wow-duration="0.7s">
-        <eval-component [template]="page.content.rendered"></eval-component>
-      </div>
-
-        <hr class="mb-4 mt-4">
-
-      <div class="reply-form wow fadeInUp" data-wow-duration="0.7s" data-wow-delay="0.1s" data-wow-offset="200">
+      <div class="reply-form wow fadeInUp mt-4" data-wow-duration="0.7s" data-wow-delay="0.1s" data-wow-offset="200">
         <!-- Material form contact -->
   <form id="form-reply" class="card-body" #formReply="ngForm">
       <p class="h4 mb-4">Leave A Reply!</p>
@@ -78,21 +78,21 @@
       <!-- Material input email -->
       <div class="md-form">
         <i class="fa fa-envelope prefix grey-text"></i>
-        <input mdbInputDirective type="email" data-error="Invalid email" data-success=" " id="form-reply-email" class="form-control" #formEmail name="reply-email" [(ngModel)]="reply.email">
+        <input mdbInputDirective type="email" data-error=" " data-success=" " id="form-reply-email" class="form-control" #formEmail name="reply-email" [(ngModel)]="reply.email">
         <label for="form-reply-email">Your email</label>
       </div>
 
       <!-- Material input subject -->
       <div class="md-form">
         <i class="fa fa-link prefix grey-text"></i>
-        <input mdbInputDirective type="text" id="form-reply-website" data-success=" " class="form-control" min="0" optional="true" max="140" #formWebsite name="reply-website" [(ngModel)]="reply.website">
+        <input mdbInputDirective type="text" id="form-reply-website" data-error=" " data-success=" " class="form-control" min="0" optional="true" max="140" #formWebsite name="reply-website" [(ngModel)]="reply.website">
         <label for="form-reply-website">Website</label>
       </div>
 
       <!-- Material textarea message -->
       <div class="md-form">
         <i class="fa fa-pencil prefix grey-text"></i>
-        <textarea mdbInputDirective type="text" id="form-reply-body" data-error="Please make your page" data-success=" " min="5" max="4096" class="form-control md-textarea" rows="2" #formBody name="reply-body" [(ngModel)]="reply.body"></textarea>
+        <textarea mdbInputDirective type="text" id="form-reply-body" data-error=" " data-success=" " min="5" max="4096" class="form-control md-textarea" rows="2" #formBody name="reply-body" [(ngModel)]="reply.body"></textarea>
         <label for="form-reply-body">Your message</label>
       </div>
 

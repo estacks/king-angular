@@ -18,7 +18,7 @@
     width: 100px;
     height: 1px;
     margin-left: -50px;
-    border-bottom-width: 1px;
+    border-bottom-width: 3px;
     border-bottom-style: solid;
     line-height: 0;
   }
@@ -27,5 +27,16 @@
 #main-title,
 #sub-title {
   letter-spacing: 1px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#sub-title-display {
+  font-size: 1.5rem;
+}
+
+.cta-buttons {
+  .btn {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px #fff solid;
+  }
 }

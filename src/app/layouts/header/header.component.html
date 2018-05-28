@@ -1,17 +1,20 @@
 <mdb-navbar [ngClass]="{'transparent': isTransparent}" [SideClass]="navClass">
   <logo>
     <a class="navbar-brand" routerLink="/">
-      <img src="assets/logo.png" class="d-inline-block align-top" height="32" alt="Logo">
+      <img src="assets/logo.png" class="d-inline-block align-top" alt="Eric King's Logo">
     </a>
   </logo>
 
   <links>
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item" routerLink="/home" [routerLinkActive]="'active'">
-        <a class="nav-link" mdbWavesEffect routerLink="/home" [routerLinkActive]="'active'">About</a>
+        <a class="nav-link" mdbWavesEffect routerLink="/home" [routerLinkActive]="'active'">Home</a>
       </li>
       <li class="nav-item" routerLink="/blog" [routerLinkActive]="'active'">
         <a class="nav-link" mdbWavesEffect routerLink="/blog" [routerLinkActive]="'active'">Blog</a>
+      </li>
+      <li class="nav-item" routerLink="/contact" [routerLinkActive]="'active'">
+        <a class="nav-link" mdbWavesEffect routerLink="/contact" [routerLinkActive]="'active'">Contact</a>
       </li>
       <li class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light" id="navbarProjects" type="button">
