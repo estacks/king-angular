@@ -10,9 +10,13 @@ import { map, take } from 'rxjs/operators';
 
 import { WpService } from './wp.service';
 
+/**
+ * WpResolver - Angular route Resolver for retrieving data from the WP REST API
+ */
+
 @Injectable()
 export class WpResolver implements Resolve<any> {
-  private dataCache: any = {};
+  private dataCache: any = {}; //Cache for reloading pages one has been to
 
   constructor(private wp: WpService, private router: Router) {}
 
@@ -20,60 +24,70 @@ export class WpResolver implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-    let url: string;
-    let params = {};
-    let paramMap: any = {};
-    let queryParamMap: any = {};
-    let setParams: any = {};
-    let validator = function(response) {
-      return !!response;
-    };
+    /* The parameters object that will be used in the HTTP request */
+    let params: any = {};
+    /* The endpoint's URL fragment */
+    let url: string = route.data['url'] || undefined;
+    /* Maps param keys from the router to their values */
+    let paramMap: any = route.data['paramMap'] || {};
+    /* Maps query param keys to their values */
+    let queryParamMap: any = route.data['queryParamMap'] || {};
+    /* Directly sets specified params to WP */
+    let setParams: any = route.data['setParams'] || {};
+    /* Specified validator function to make sure the response is correct */
+    let validator =
+      route.data['validator'] ||
+      function(res) {
+        return !!res;
+      };
 
-    //Map data inputs from the router to the resolver
-    if (route.data['paramMap']) paramMap = route.data['paramMap'];
-    if (route.data['queryParamMap'])
-      queryParamMap = route.data['queryParamMap'];
-    if (route.data['setParams']) setParams = route.data['setParams'];
-    if (route.data['validator']) validator = route.data['validator'];
-    if (route.data['url']) url = route.data['url'];
-
+    /*
+     * The cache = true argument will store a copy of the route's
+     *  data for future navigation
+     **/
     let cache: boolean = route.data['cache'] ? true : false;
 
-    //Get any Angular route parameters specified
+    /* Maps paramMap data input by setting the param for Wordpress to the actual
+     *  route params from Angular
+     **/
     Object.keys(paramMap).forEach(key => {
       let value = route.paramMap.get(key);
       if (value) params[paramMap[key]] = value;
     });
 
+    /* Same deal but just for queryParams */
     Object.keys(queryParamMap).forEach(key => {
       let value = route.queryParamMap.get(key);
       if (value) params[queryParamMap[key]] = value;
     });
 
-    //Assign any directly set parameters
+    //Assign any directly setParams parameters
     params = Object.assign(params, setParams);
 
-    let returnObserver;
+    let returnObserver: Observable<any>;
 
-    //console.log('Parameters', params, route.paramMap.keys, route.queryParamMap.keys);
-
+    //The unique identifier for each route and params
     let identifier: string = url + JSON.stringify(params);
+
+    //If a cached data object exists for the identifier return it
     if (cache && this.dataCache[identifier]) {
       returnObserver = Observable.create(observer => {
         observer.next(this.dataCache[identifier]);
         observer.complete();
       });
+      //Retrieve the data from the REST API
     } else {
       returnObserver = this.wp.get(url, {
         params: params
       });
     }
 
+    //Return the first response from either the data cache or HTTP client
     return returnObserver.pipe(
       take(1),
       map(response => {
-        //console.log('Response', response);
         if (validator(response)) {
+          //If set to cache, add to cache
           if (cache) this.dataCache[identifier] = response;
           return response;
         } else {

@@ -20,6 +20,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    /**
+     * This will set the title of any page navigated to if the 'title' attribute
+     *  is specified in the particular route's data
+     **/
     this.router.events
       .pipe(
         filter(e => e instanceof NavigationEnd),
@@ -31,6 +35,6 @@ export class AppComponent implements OnInit {
         filter(route => route.outlet === 'primary'),
         mergeMap(route => route.data)
       )
-      .subscribe(e => this.title.setTitle(e['title']));
+      .subscribe(data => this.title.setTitle(data['title']));
   }
 }

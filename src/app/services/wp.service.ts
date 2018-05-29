@@ -9,15 +9,20 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
+/*
+  WpService
+  Abstracted service for retrieving data from the WP REST API using Angular's HttpClient
+
+  Also contains methods for getting and setting a basic data store for the Wordpress site's state.
+*/
+
 @Injectable({
   providedIn: 'root'
 })
 export class WpService {
   root: string = environment.url + 'wp/v2/';
   private settings: Subject<any> = new Subject();
-  private state: BehaviorSubject<any> = new BehaviorSubject({
-    poop: 'balls'
-  });
+  private state: BehaviorSubject<any> = new BehaviorSubject({});
 
   constructor(private http: HttpClient) {
     this.get('settings').subscribe(
@@ -28,19 +33,45 @@ export class WpService {
     );
   }
 
-  get(url: string, options?) {
-    return this.http.get(this.root + url, options);
+  /**
+   * get - Retrieves WP REST endpoint
+   *
+   * @param  {string} url: string description
+   * @param  {object} options?    description
+   * @return {Observable<ArrayBuffer>}             description
+   */
+
+  get(url: string, options?): Observable<ArrayBuffer> {
+    let fullUrl = options && !!options.noRoot ? url : this.root + url;
+
+    return this.http.get(fullUrl, options);
   }
 
-  getStore(stateParam: string) {
-    return this.state.asObservable().pipe(map(state => state[stateParam]));
+  /**
+   * getStore - Retrieves an arbitrary data store identified by stateKey
+   *
+   * @param {string} stateKey identifier for the data object to retrieve
+   * @return {Observable<any>}
+   */
+
+  getStore(stateKey: string): Observable<any> {
+    return this.state.asObservable().pipe(map(state => state[stateKey]));
   }
 
-  setStore(stateParam: string, value: any) {
+  /**
+   * setStore - Sets a data store object specified by stateKey with value
+   *
+   * @param  {string} stateKey
+   * @param  {any} value
+   * @returns {boolean}
+   */
+
+  setStore(stateKey: string, value: any): boolean {
     let curVal = this.state.getValue();
 
-    curVal[stateParam] = value;
+    curVal[stateKey] = value;
 
     this.state.next(curVal);
+    return true;
   }
 }

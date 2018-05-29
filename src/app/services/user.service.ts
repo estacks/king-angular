@@ -12,6 +12,10 @@ import { environment } from 'src/environments/environment';
 import { UserData, UserLoginOptions } from '../models/user.model';
 export { UserData, UserLoginOptions };
 
+/**
+ * UserService -  service for logging users in and out and storing their data
+ */
+
 @Injectable({
   providedIn: 'root'
 })

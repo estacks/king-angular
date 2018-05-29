@@ -1,4 +1,4 @@
-<div class="replies" *ngIf="replies && replies[0]">
+<section class="replies" *ngIf="replies && replies.length > 0">
   <h4 class="replies-count">{{replies[0].length}} Comments</h4>
   <div class="media" *ngFor="let reply of replies[0]">
     <img
@@ -13,4 +13,4 @@
       <div class="reply-text" [innerHTML]="reply.content.rendered"></div>
     </div>
   </div>
-</div>
+</section>

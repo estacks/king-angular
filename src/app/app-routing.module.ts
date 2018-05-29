@@ -15,7 +15,6 @@ import { FooterComponent } from './layouts/footer/footer.component';
 //Shared components
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { UserListComponent } from './components/user-list/user-list.component';
-import { PostNewComponent } from './components/post-new/post-new.component';
 import { ListRepliesComponent } from './components/list-replies/list-replies.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
@@ -26,13 +25,17 @@ import { WpPageComponent } from './pages/wp-page/wp-page.component';
 import { WpPostComponent } from './pages/wp-post/wp-post.component';
 import { WpListPostsComponent } from './pages/wp-list-posts/wp-list-posts.component';
 
+//WpResolver service which retrieves the data from Wordpress REST endpoints
 import { WpResolver } from './services/wp-resolver.service';
 
+//Route definitions
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
     resolve: { pages: WpResolver },
+    //Data is passed to the WpResolver and component itself, check WpResolver
+    //  for more info
     data: {
       title: 'Home',
       url: 'pages',
@@ -100,18 +103,11 @@ const routes: Routes = [
     MDBBootstrapModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [
-    RouterModule,
-    FormsModule,
-    AuthenticationComponent,
-    UserListComponent,
-    PostNewComponent
-  ],
+  exports: [RouterModule, FormsModule],
   declarations: [
     AuthenticationComponent,
     LoadingSpinnerComponent,
     UserListComponent,
-    PostNewComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,

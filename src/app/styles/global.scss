@@ -2,6 +2,10 @@ main {
   margin-top: 70px;
   padding-top: 2em;
   padding-bottom: 2em;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #main.no-spacing {
@@ -200,9 +204,11 @@ nav.navbar.transparent.top-nav-collapse .navbar-brand > img {
   transition: all 0.2s ease-in-out;
 }
 
-nav.navbar.transparent .navbar-brand > img {
-  max-width: $logo-size-lg;
-  max-height: $logo-size-lg;
+@media (min-width: 768px) {
+  nav.navbar.transparent .navbar-brand > img {
+    max-width: $logo-size-lg;
+    max-height: $logo-size-lg;
+  }
 }
 
 // Loading spinner
