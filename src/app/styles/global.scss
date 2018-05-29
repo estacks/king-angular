@@ -32,39 +32,59 @@ nav.transparent:not(.top-nav-collapse) {
   background-color: transparent !important;
 }
 
-.brand-google {
+.btn-gplus {
   background-color: #db4437;
   color: #ffffff !important;
 }
 
-.brand-facebook {
+.btn-fb {
   background-color: #3b5998;
   color: #ffffff !important;
 }
 
-.brand-twitter {
+.btn-tw {
   background-color: #1da1f2;
   color: #ffffff !important;
 }
 
-.brand-pinterest {
+.btn-pinterest {
   background-color: #bd081c;
   color: #ffffff !important;
 }
 
-.brand-snapchat {
+.btn-snapchat {
   background-color: #fffc00;
   color: #ffffff !important;
 }
 
-.brand-instagram {
+.btn-instagram {
   background-color: #262626;
   color: #ffffff !important;
 }
 
-.brand-linkedin {
+.btn-linkedin {
   background-color: #0077b5;
   color: #ffffff !important;
+}
+
+.btn-platstar {
+  color: #ffffff !important;
+  background-color: #333;
+}
+
+.btn-github {
+  color: #ffffff !important;
+  background-color: rgb(51, 51, 51);
+}
+
+.btn-reddit {
+  color: #ffffff !important;
+  background-color: rgb(255, 69, 0);
+}
+
+.btn-so {
+  color: #ffffff !important;
+  background-color: rgb(255, 172, 68);
 }
 
 .typed-cursor {

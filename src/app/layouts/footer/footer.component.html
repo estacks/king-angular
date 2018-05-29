@@ -4,15 +4,48 @@
     <!--Footer Links-->
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-1">
-                <h5 class="title">Thanks for visiting!</h5>
-                <p>Don't hesitate to <a class="text-underlined" routerLink="/contact-me">contact me</a> if you want to get in touch!</p>
+            <div class="col-md-6 mb-4">
+              <!--Form-->
+                          <div class="card text-dark wow fadeInRight" data-wow-delay="0.3s">
+                              <div class="card-body z-depth-2">
+                                  <!--Header-->
+                                  <div class="text-center">
+                                      <h3>Get in Touch</h3>
+                                      <hr>
+                                  </div>
+
+                                  <!--Body-->
+                                  <div class="md-form">
+                                      <i class="fa fa-user prefix grey-text"></i>
+                                      <input type="text" id="form3" class="form-control" mdbInputDirective>
+                                      <label for="form3">Your name</label>
+                                  </div>
+                                  <div class="md-form">
+                                      <i class="fa fa-envelope prefix grey-text"></i>
+                                      <input type="text" id="form2" class="form-control" mdbInputDirective>
+                                      <label for="form2">Your email</label>
+                                  </div>
+
+                                  <!--Textarea with icon prefix-->
+                                  <div class="md-form">
+                                      <i class="fa fa-pencil prefix grey-text"></i>
+                                      <textarea type="text" id="form8" class="md-textarea"></textarea>
+                                      <label for="form8">Your message</label>
+                                  </div>
+
+                                  <div class="text-center">
+                                      <button class="btn btn-primary waves-light" mdbWavesEffect>Send</button>
+                                  </div>
+
+                              </div>
+                          </div>
+                          <!--/.Form-->
             </div>
 
             <hr class="hidden-md-up">
 
             <!--Second column-->
-            <div class="col-md-2 offset-md-1">
+            <div class="col-md-2 col-md-offset-1">
                 <h5 class="title">Links</h5>
                 <ul class="list-unstyled">
                     <li>
@@ -40,10 +73,22 @@
     <div class="call-to-action text-center py-3">
         <ul class="list-unstyled list-inline">
             <li class="list-inline-item">
-                <h5>Get in touch</h5>
+                <a href="mailto:eric@king.rocks" class="btn btn-danger waves-light btn-rounded" mdbWavesEffect><i class="fa fa-envelope left" aria-hidden="true"></i> Email</a>
             </li>
             <li class="list-inline-item">
-                <a href="mailto:eric@king.rocks" class="btn btn-danger waves-light btn-rounded" mdbWavesEffect>Email</a>
+                <a href="https://plat.chat/#/m/main/tag/%40eStacks" class="btn btn-platstar waves-light btn-rounded" mdbWavesEffect><i class="icon icon-platstar left" aria-hidden="true"></i> Platstar</a>
+            </li>
+            <li class="list-inline-item">
+                <a href="https://facebook.com/eking" class="btn btn-fb waves-light btn-rounded" mdbWavesEffect><i class="fa fa-facebook left" aria-hidden="true"></i> Facebook</a>
+            </li>
+            <li class="list-inline-item">
+                <a href="https://stackoverflow.com/users/6452040/estacks" class="btn btn-so waves-light btn-rounded" mdbWavesEffect><i class="fa fa-stack-overflow left" aria-hidden="true"></i> Stack Overflow</a>
+            </li>
+            <li class="list-inline-item">
+                <a href="https://github.com/estacks" class="btn btn-github waves-light btn-rounded" mdbWavesEffect><i class="fa fa-github left" aria-hidden="true"></i> Github</a>
+            </li>
+            <li class="list-inline-item">
+                <a href="https://www.reddit.com/user/estacks" class="btn btn-reddit waves-light btn-rounded" mdbWavesEffect><i class="fa fa-reddit-alien left" aria-hidden="true"></i> Reddit</a>
             </li>
         </ul>
     </div>
