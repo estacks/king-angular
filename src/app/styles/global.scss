@@ -2,10 +2,6 @@ main {
   margin-top: 70px;
   padding-top: 2em;
   padding-bottom: 2em;
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 #main.no-spacing {
@@ -30,6 +26,19 @@ h6,
 .title,
 .subtitle {
   font-family: 'Oswald', sans-serif;
+}
+
+.full-bg-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 100vw;
+  max-height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  z-index: -100;
 }
 
 nav.transparent:not(.top-nav-collapse) {
