@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./wp-post.component.scss']
 })
 export class WpPostComponent implements OnInit {
-  post: string;
+  post: any;
   reply = {
     name: '',
     email: '',

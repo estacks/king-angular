@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./wp-page.component.scss']
 })
 export class WpPageComponent implements OnInit {
-  page: string;
+  page: any;
   reply = {
     name: '',
     email: '',
