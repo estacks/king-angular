@@ -27,6 +27,7 @@ import { WpListPostsComponent } from './pages/wp-list-posts/wp-list-posts.compon
 
 //WpResolver service which retrieves the data from Wordpress REST endpoints
 import { WpResolver } from './services/wp-resolver.service';
+import { generateTitle } from './services/head.service';
 
 //Route definitions
 const routes: Routes = [
@@ -37,7 +38,7 @@ const routes: Routes = [
     //Data is passed to the WpResolver and component itself, check WpResolver
     //  for more info
     data: {
-      title: 'Home',
+      title: generateTitle('Home'),
       url: 'pages',
       setParams: {
         _embed: 1,
@@ -57,7 +58,7 @@ const routes: Routes = [
         categories: 13
       },
       cache: true,
-      title: 'Blog'
+      title: generateTitle('Blog')
     }
   },
   {
@@ -111,13 +112,17 @@ const routes: Routes = [
         categories: 3
       },
       cache: true,
-      title: 'Projects'
+      title: generateTitle('Projects')
     }
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '', component: HeaderComponent, outlet: 'header' },
   { path: '', component: FooterComponent, outlet: 'footer' },
-  { path: '**', component: NotFoundComponent, data: { title: '404 Not Found' } }
+  {
+    path: '**',
+    component: NotFoundComponent,
+    data: { title: generateTitle('404 Not Found') }
+  }
 ];
 
 @NgModule({

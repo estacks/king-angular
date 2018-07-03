@@ -11,8 +11,8 @@
       <div class="card card-cascade wider">
 
         <!-- Card image -->
-        <div class="view overlay">
-          <img *ngIf="page.better_featured_image" class="card-img-top page-img-top" [src]="page.better_featured_image.source_url" [alt]="page.better_featured_image.alt_text">
+        <div class="view overlay" *ngIf="page.better_featured_image && page.better_featured_image != null">
+          <img class="card-img-top" [src]="page.better_featured_image.source_url" [alt]="page.better_featured_image.alt_text">
           <a [href]="page.better_featured_image.source_url" target="_blank">
             <div class="mask rgba-white-slight"></div>
           </a>
@@ -52,7 +52,7 @@
           <hr class="my-4">
 
           <!-- Excerpt -->
-          <div class="content rte mt-4" data-wow-duration="0.7s">
+          <div class="content rte mt-4" data-wow-duration="0.7s" *ngIf="page.content && page.content.rendered">
             <eval-component [template]="page.content.rendered"></eval-component>
           </div>
 
