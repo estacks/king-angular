@@ -8,6 +8,7 @@ import {
   OnDestroy,
   OnChanges,
   NgModule,
+  NgZone,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation
@@ -58,9 +59,17 @@ export class EvalComponentComponent
 
   cmpRef: any;
 
-  constructor(private compiler: Compiler) {}
+  constructor(private compiler: Compiler, private zone: NgZone) {}
 
   ngAfterViewInit() {
+    this.constructComponent();
+  }
+
+  ngOnDestroy() {
+    this.cleanupComponent();
+  }
+
+  constructComponent() {
     this.componentDecorator.template = this.template;
 
     let DynamicComponent = CreateComponent(
@@ -81,12 +90,8 @@ export class EvalComponentComponent
         const f: any = factories.componentFactories[0];
         this.cleanupComponent();
         this.cmpRef = this.container.createComponent(f);
-        this.updateData();
+        this.updateData({}, false);
       });
-  }
-
-  ngOnDestroy() {
-    this.cleanupComponent();
   }
 
   cleanupComponent() {
@@ -97,14 +102,29 @@ export class EvalComponentComponent
   }
 
   ngOnChanges(changes) {
-    if (changes['data']) {
-      this.updateData();
-    }
+    console.log('Eval changes', changes);
+    let data = {};
+
+    Object.keys(changes).forEach(key => {
+      data[key] = changes[key].currentValue;
+    });
+
+    this.updateData(data, true);
   }
 
-  updateData() {
+  updateData(changes, rebuild: boolean = false) {
+    if (rebuild && this.cmpRef) {
+      this.cleanupComponent();
+      this.constructComponent();
+    }
+
     if (this.cmpRef && this.cmpRef.instance) {
-      this.cmpRef.instance = Object.assign(this.cmpRef.instance, this.data);
+      let data = {};
+      this.cmpRef.instance;
+
+      this.zone.run(() => {
+        this.cmpRef.instance = Object.assign(this.cmpRef.instance, changes);
+      });
     }
   }
 }

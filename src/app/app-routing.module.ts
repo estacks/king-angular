@@ -53,10 +53,23 @@ const routes: Routes = [
     data: {
       url: 'posts',
       setParams: {
-        _embed: 1
+        _embed: 1,
+        categories: 13
       },
       cache: true,
       title: 'Blog'
+    }
+  },
+  {
+    path: 'services',
+    component: WpPageComponent,
+    resolve: { pages: WpResolver },
+    data: {
+      url: 'pages',
+      setParams: {
+        _embed: 1,
+        slug: 'services'
+      }
     }
   },
   {
@@ -85,6 +98,20 @@ const routes: Routes = [
       paramMap: {
         slug: 'slug'
       }
+    }
+  },
+  {
+    path: 'projects',
+    component: WpListPostsComponent,
+    resolve: { posts: WpResolver },
+    data: {
+      url: 'posts',
+      setParams: {
+        _embed: 1,
+        categories: 3
+      },
+      cache: true,
+      title: 'Projects'
     }
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

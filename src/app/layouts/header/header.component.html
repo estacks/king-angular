@@ -10,33 +10,37 @@
       <li class="nav-item" routerLink="/home" [routerLinkActive]="'active'">
         <a class="nav-link" mdbWavesEffect routerLink="/home" [routerLinkActive]="'active'">Home</a>
       </li>
-      <li class="nav-item" routerLink="/blog" [routerLinkActive]="'active'">
-        <a class="nav-link" mdbWavesEffect routerLink="/blog" [routerLinkActive]="'active'">Blog</a>
-      </li>
-      <li class="nav-item" routerLink="/contact" [routerLinkActive]="'active'">
-        <a class="nav-link" mdbWavesEffect routerLink="/contact" [routerLinkActive]="'active'">Contact</a>
+      <li class="nav-item" routerLink="/services" [routerLinkActive]="'active'">
+        <a class="nav-link" mdbWavesEffect routerLink="/services" [routerLinkActive]="'active'">Services</a>
       </li>
       <li class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light" id="navbarProjects" type="button">
           Projects
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarProjects">
-          <a class="dropdown-item" routerLink="/page/projects" [routerLinkActive]="'active'">Platstar</a>
-          <a class="dropdown-item" href="#" [routerLinkActive]="'active'">Colorado Board Company</a>
+          <a class="dropdown-item" routerLink="/post/platstar" [routerLinkActive]="'active'">Platstar</a>
+          <a class="dropdown-item" routerLink="/post/sweet-rides" [routerLinkActive]="'active'">Sweet Rides</a>
+          <a class="dropdown-item" routerLink="/post/colorado-board-company" [routerLinkActive]="'active'">Colorado Board Company</a>
+          <a class="dropdown-item" routerLink="/post/wp-angular" [routerLinkActive]="'active'">Angular + Wordpress</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" [routerLinkActive]="'active'">Sweet Rides</a>
-          <a class="dropdown-item" href="#" [routerLinkActive]="'active'">Demo: Lawn Care</a>
-          <a class="dropdown-item" href="#" [routerLinkActive]="'active'">Demo: Store</a>
+          <a class="dropdown-item" routerLink="/projects" [routerLinkActive]="'active'">Browse</a>
         </div>
       </li>
-      <li class="nav-item dropdown" dropdown>
+      <li class="nav-item" routerLink="/blog" [routerLinkActive]="'active'">
+        <a class="nav-link" mdbWavesEffect routerLink="/blog" [routerLinkActive]="'active'">Blog</a>
+      </li>
+      <li class="nav-item" routerLink="/contact" [routerLinkActive]="'active'">
+        <a class="nav-link" mdbWavesEffect routerLink="/contact" [routerLinkActive]="'active'">Contact</a>
+      </li>
+
+      <!--<li class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light" id="navbarLogin" type="button">
           Account
         </a>
         <div class="dropdown-menu p-2 text-center">
           <app-authentication></app-authentication>
         </div>
-      </li>
+      </li>-->
     </ul>
   </links>
 </mdb-navbar>

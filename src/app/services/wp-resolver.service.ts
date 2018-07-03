@@ -38,7 +38,8 @@ export class WpResolver implements Resolve<any> {
     let validator =
       route.data['validator'] ||
       function(res) {
-        return !!res;
+        console.log('Page Response', res);
+        return res && res.length > 0;
       };
 
     /*
