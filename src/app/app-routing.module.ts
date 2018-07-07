@@ -4,6 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {
+  RECAPTCHA_SETTINGS,
+  RecaptchaSettings,
+  RecaptchaLoaderService,
+  RecaptchaModule
+} from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 import { EvalComponentModule } from 'projects/eval-component/src/public_api';
 //import { EvalComponentModule } from 'eval-component';
@@ -126,6 +133,10 @@ const routes: Routes = [
   }
 ];
 
+const recaptchaSettings: RecaptchaSettings = {
+  siteKey: '6LeZ2WIUAAAAAKgvioAJEOl5gxwGMP8vQitPSVz-'
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -134,7 +145,9 @@ const routes: Routes = [
     ScrollToModule,
     EvalComponentModule,
     MDBBootstrapModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    RecaptchaModule.forRoot(),
+    RecaptchaFormsModule
   ],
   exports: [RouterModule, FormsModule],
   declarations: [
@@ -151,7 +164,13 @@ const routes: Routes = [
     WpListPostsComponent,
     ContactFormComponent
   ],
-  providers: [WpResolver],
+  providers: [
+    WpResolver,
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: recaptchaSettings
+    }
+  ],
   schemas: [
     /*NO_ERRORS_SCHEMA*/
   ]
