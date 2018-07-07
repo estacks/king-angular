@@ -17,19 +17,23 @@ function contact_email($data) {
   if (empty($to)) $to = 'eric@king.rocks';
   $to = sanitize_email($to);
 
-  $subject = 'Wordpress Contact Form: Message from ' + sanitize_text_field($data['name']);
+  $subject = '<Contact Form> Message from: ' . sanitize_text_field($data['name']);
   $message = sanitize_textarea_field($data['message']);
 
-  return wp_mail($to, $subject, $message);
+  wp_mail($to, $subject, $message);
+
+  $return = array('success' => true, 'input' => array('email' => $data['email'], 'to' => $to, 'subject' => $subject));
+
+  return $return;
 }
 
-function register_rest_routes() {
+function contact_add_json() {
   register_rest_route('king-angular/v1', '/contact', array(
     'methods' => 'POST',
     'callback' => 'contact_email'
   ));
 }
 
-add_action('init', 'register_rest_routes');
+add_action('init', 'contact_add_json');
 
  ?>
