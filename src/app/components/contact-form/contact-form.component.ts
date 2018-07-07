@@ -46,6 +46,13 @@ export class ContactFormComponent implements OnInit {
       .subscribe(res => {
         console.log('Server response', res);
 
+        //Clear the form fields.
+        this.email = {
+          email: '',
+          name: '',
+          message: ''
+        };
+
         //Show success message, hide it after 5 seconds.
         this.success = true;
 
