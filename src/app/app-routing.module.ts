@@ -17,6 +17,7 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { UserListComponent } from './components/user-list/user-list.component';
 import { ListRepliesComponent } from './components/list-replies/list-replies.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
 //Routed pages
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -147,7 +148,8 @@ const routes: Routes = [
     ListRepliesComponent,
     NotFoundComponent,
     WpPostComponent,
-    WpListPostsComponent
+    WpListPostsComponent,
+    ContactFormComponent
   ],
   providers: [WpResolver],
   schemas: [

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
-const SITE_TITLE = 'Platstar';
+const SITE_TITLE = 'Eric King';
 const TITLE_SEPARATOR = '|';
 export const generateTitle = function(title: string): string {
   return `${title} ${TITLE_SEPARATOR} ${SITE_TITLE}`;
