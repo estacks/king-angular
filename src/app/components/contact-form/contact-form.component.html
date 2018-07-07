@@ -1,37 +1,40 @@
 <!--Form-->
             <div class="card text-dark wow fadeInRight" data-wow-delay="0.3s">
                 <div class="card-body z-depth-2">
+                    <form (ngSubmit)="onSubmit($event, captchaRef)" #contactForm="ngForm">
                     <!--Header-->
                     <div class="text-center">
                         <h3>Get in Touch</h3>
                         <hr>
+                        <div class="error danger-color text-white z-depth-1" *ngIf="error && error.length > 0">{{error}}</div>
+                        <div class="success success-color text-white z-depth-1" *ngIf="success">Your message has been sent, we'll be in touch soon!</div>
                     </div>
 
                     <!--Body-->
                     <div class="md-form">
                         <i class="fa fa-user prefix grey-text"></i>
-                        <input type="text" id="form3" class="form-control" mdbInputDirective>
-                        <label for="form3">Your name</label>
+                        <input type="text" id="contact-name" class="form-control" [(ngModel)]="email.name" name="name" required data-error=" " data-success=" " mdbInputDirective>
+                        <label for="contact-name">Your name</label>
                     </div>
                     <div class="md-form">
                         <i class="fa fa-envelope prefix grey-text"></i>
-                        <input type="text" id="form2" class="form-control" mdbInputDirective>
-                        <label for="form2">Your email</label>
+                        <input type="email" id="contact-email" class="form-control" [(ngModel)]="email.email" name="email" required data-error=" " data-success=" " mdbInputDirective>
+                        <label for="contact-email">Your email</label>
                     </div>
 
                     <!--Textarea with icon prefix-->
                     <div class="md-form">
                         <i class="fa fa-pencil prefix grey-text"></i>
-                        <textarea type="text" id="form8" class="md-textarea"></textarea>
-                        <label for="form8">Your message</label>
+                        <textarea type="text" id="contact-message" class="md-textarea form-control" [(ngModel)]="email.message" name="message" required data-error=" " data-success=" " mdbInputDirective></textarea>
+                        <label for="contact-message">Your message</label>
                     </div>
 
-                    <re-captcha></re-captcha>
 
                     <div class="text-center">
-                        <button class="btn btn-primary waves-light" mdbWavesEffect>Send</button>
+                        <re-captcha #captchaRef="reCaptcha" (resolved)="onResolved($event)" size="invisible"></re-captcha>
+                        <button type="submit" [disabled]="!contactForm.form.valid" class="btn btn-primary waves-light" mdbWavesEffect>Send</button>
                     </div>
-
+                  </form>
                 </div>
             </div>
             <!--/.Form-->

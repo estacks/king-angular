@@ -42,9 +42,17 @@ export class WpService {
    */
 
   get(url: string, options?): Observable<ArrayBuffer> {
-    let fullUrl = options && !!options.noRoot ? url : this.root + url;
+    let fullUrl =
+      options && !!options.noRoot ? environment.url + url : this.root + url;
 
     return this.http.get(fullUrl, options);
+  }
+
+  post(url: string, data: any, options?): Observable<ArrayBuffer> {
+    let fullUrl =
+      options && !!options.noRoot ? environment.url + url : this.root + url;
+
+    return this.http.post(fullUrl, data, options);
   }
 
   /**
