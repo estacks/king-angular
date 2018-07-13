@@ -26,7 +26,7 @@
           <!-- Data -->
           <p>Written by <a><strong>{{page._embedded.author[0].name}}</strong></a>, {{page.date | date}}</p>
           <!-- Social shares -->
-          <div class="social-counters">
+          <div class="social-counters" *ngIf="page.ping_status && page.ping_status === 'open'">
             <!-- Facebook -->
             <a class="btn btn-fb">
               <i class="fa fa-facebook pr-2"></i>
@@ -63,7 +63,7 @@
 
       </div>
 
-      <div class="reply-form wow fadeInUp mt-4" data-wow-duration="0.7s" data-wow-delay="0.1s" data-wow-offset="200">
+      <div *ngIf="page.comment_status && page.comment_status === 'open'" class="reply-form wow fadeInUp mt-4" data-wow-duration="0.7s" data-wow-delay="0.1s" data-wow-offset="200">
         <!-- Material form contact -->
   <form id="form-reply" class="card-body" #formReply="ngForm">
       <p class="h4 mb-4">Leave A Reply!</p>

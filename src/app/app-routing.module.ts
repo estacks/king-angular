@@ -82,6 +82,18 @@ const routes: Routes = [
     }
   },
   {
+    path: 'contact',
+    component: WpPageComponent,
+    resolve: { pages: WpResolver },
+    data: {
+      url: 'pages',
+      setParams: {
+        _embed: 1,
+        slug: 'contact'
+      }
+    }
+  },
+  {
     path: 'page/:slug',
     component: WpPageComponent,
     resolve: { pages: WpResolver },

@@ -14,7 +14,9 @@ function contact_email($data) {
   }
 
   $to = KA_Plugin::get_option('contact_email');
-  if (empty($to)) $to = 'eric@king.rocks';
+  if (empty($to)) {
+    return array('success' => false, 'reason' => 'No email address was set to receive email.');
+  }
   $to = sanitize_email($to);
 
   $subject = '<Contact Form> Message from: ' . sanitize_text_field($data['name']);

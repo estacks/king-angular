@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HeadService } from 'src/app/services/head.service';
+import * as ScrollMagic from 'scrollmagic';
 
 @Component({
   selector: 'app-wp-page',
@@ -31,6 +32,8 @@ export class WpPageComponent implements OnInit, OnDestroy {
       this.head.setTitle(this.page.title.rendered);
 
       this.constructMetaTags();
+
+      console.log('ScrollMagic', ScrollMagic);
 
       console.debug('(wp-page-component.ts) => Loaded Page', this.page);
     });

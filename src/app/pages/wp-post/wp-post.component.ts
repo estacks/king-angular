@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HeadService } from 'src/app/services/head.service';
+import * as ScrollMagic from 'scrollmagic';
 
 @Component({
   selector: 'app-wp-post',
@@ -24,6 +25,7 @@ export class WpPostComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    console.log('ScrollMagic', ScrollMagic);
     this.route.data.subscribe((data: { posts: Array<any> }) => {
       this.post = data.posts[0];
 

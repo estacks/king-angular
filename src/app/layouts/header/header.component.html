@@ -1,7 +1,7 @@
 <mdb-navbar [ngClass]="{'transparent': isTransparent}" [SideClass]="navClass">
   <logo>
     <a class="navbar-brand" routerLink="/">
-      <img src="assets/logo.png" class="d-inline-block align-top" alt="Eric King's Logo">
+      <img src="http://king.rocks/wp-content/themes/king-angular/assets/logo.png" class="d-inline-block align-top" alt="Eric King's Logo">
     </a>
   </logo>
 
@@ -9,9 +9,6 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item" routerLink="/home" [routerLinkActive]="'active'">
         <a class="nav-link" mdbWavesEffect routerLink="/home" [routerLinkActive]="'active'">Home</a>
-      </li>
-      <li class="nav-item" routerLink="/services" [routerLinkActive]="'active'">
-        <a class="nav-link" mdbWavesEffect routerLink="/services" [routerLinkActive]="'active'">Services</a>
       </li>
       <li class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-light" id="navbarProjects" type="button">
