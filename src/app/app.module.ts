@@ -25,4 +25,5 @@ import { environment } from '../environments/environment';
   providers: [httpInterceptorProviders, Title],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
