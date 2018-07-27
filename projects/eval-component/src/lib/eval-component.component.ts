@@ -1,45 +1,27 @@
 import {
   Component,
+  HostListener,
   Input,
+  NgModuleRef,
   AfterViewInit,
   Compiler,
-  COMPILER_OPTIONS,
-  CompilerFactory,
   OnDestroy,
   OnChanges,
   NgModule,
-  NgZone,
+  NO_ERRORS_SCHEMA,
   ViewChild,
+  ComponentFactoryResolver,
   ViewContainerRef,
   ViewEncapsulation
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { JitCompiler } from '@angular/compiler';
-import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
-
-// https://github.com/angular/angular/issues/15510#issuecomment-294860905
-export function createJitCompiler(compilerFactory: CompilerFactory) {
-  return compilerFactory.createCompiler();
-}
 
 @Component({
   selector: 'eval-component',
   template: `
     <ng-template #container></ng-template>
   `,
-  providers: [
-    { provide: COMPILER_OPTIONS, useValue: {}, multi: true },
-    {
-      provide: CompilerFactory,
-      useClass: JitCompilerFactory,
-      deps: [COMPILER_OPTIONS]
-    },
-    {
-      provide: Compiler,
-      useFactory: createJitCompiler,
-      deps: [CompilerFactory]
-    }
-  ]
+  styles: []
 })
 export class EvalComponentComponent
   implements AfterViewInit, OnDestroy, OnChanges {
@@ -52,6 +34,7 @@ export class EvalComponentComponent
     imports: [CommonModule]
   };
   @Input() moduleClass: any = class {};
+  @Input() imports: any = [CommonModule];
   @ViewChild('container', {
     read: ViewContainerRef
   })
@@ -59,39 +42,37 @@ export class EvalComponentComponent
 
   cmpRef: any;
 
-  constructor(private compiler: Compiler, private zone: NgZone) {}
+  constructor(
+    private _m: NgModuleRef<any>,
+    private _compiler: Compiler,
+    private _resolver: ComponentFactoryResolver
+  ) {}
 
   ngAfterViewInit() {
-    this.constructComponent();
+    if (!this.template) return false;
+    console.log('IMPORTS INIT', this.imports);
+
+    this.container.clear();
+
+    console.log('Beginning compile', this, NgModule);
+
+    this.componentDecorator.template = this.template;
+
+    let DynamicType = CustomComponent(this.template);
+    let DynamicModule = CustomNgModule(DynamicType, this.imports);
+
+    this._compiler
+      .compileModuleAndAllComponentsAsync(DynamicModule)
+      .then(factories => {
+        const f: any = factories.componentFactories[0];
+        this.cleanupComponent();
+        this.cmpRef = this.container.createComponent(f);
+        this.updateData();
+      });
   }
 
   ngOnDestroy() {
     this.cleanupComponent();
-  }
-
-  constructComponent() {
-    this.componentDecorator.template = this.template;
-
-    let DynamicComponent = CreateComponent(
-      this.template,
-      this.componentClass,
-      this.componentDecorator
-    );
-    let DynamicModule = CreateNgModule(
-      DynamicComponent,
-      this.moduleClass,
-      this.moduleDecorator
-    );
-
-    this.compiler
-      .compileModuleAndAllComponentsAsync(DynamicModule)
-      .then(factories => {
-        this.container.clear();
-        const f: any = factories.componentFactories[0];
-        this.cleanupComponent();
-        this.cmpRef = this.container.createComponent(f);
-        this.updateData({}, false);
-      });
   }
 
   cleanupComponent() {
@@ -102,64 +83,36 @@ export class EvalComponentComponent
   }
 
   ngOnChanges(changes) {
-    console.log('Eval changes', changes);
-    let data = {};
-
-    Object.keys(changes).forEach(key => {
-      data[key] = changes[key].currentValue;
-    });
-
-    this.updateData(data, true);
+    if (changes['data']) {
+      this.updateData();
+    }
   }
 
-  updateData(changes, rebuild: boolean = false) {
-    if (rebuild && this.cmpRef) {
-      this.cleanupComponent();
-      this.constructComponent();
-    }
-
+  updateData() {
     if (this.cmpRef && this.cmpRef.instance) {
-      let data = {};
-      this.cmpRef.instance;
-
-      this.zone.run(() => {
-        this.cmpRef.instance = Object.assign(this.cmpRef.instance, changes);
-      });
+      this.cmpRef.instance = Object.assign(this.cmpRef.instance, this.data);
     }
   }
 }
 
-export function CreateComponent(
-  template: string,
-  initClass: any,
-  decorator: any
-) {
-  class CustomDynamicComponent extends initClass {}
-
-  CustomDynamicComponent['decorators'] = [
-    {
-      type: Component,
-      args: [Object.assign(decorator, { template: template })]
-    }
-  ];
+export function CustomComponent(template: string) {
+  @Component({
+    selector: 'dynamic-component',
+    template: template
+  })
+  class CustomDynamicComponent {}
 
   return CustomDynamicComponent;
 }
 
-export function CreateNgModule(component: any, initClass: any, decorator: any) {
-  class CustomDynamicModule extends initClass {}
-
-  CustomDynamicModule['decorators'] = [
-    {
-      type: NgModule,
-      args: [
-        Object.assign(decorator, {
-          declarations: [component],
-          exports: [component]
-        })
-      ]
-    }
-  ];
+export function CustomNgModule(component: any, imports: Array<any>) {
+  @NgModule({
+    imports: imports,
+    declarations: [component],
+    exports: [component],
+    schemas: [NO_ERRORS_SCHEMA]
+  })
+  class CustomDynamicModule {}
 
   return CustomDynamicModule;
 }

@@ -52,7 +52,7 @@
           <hr class="my-4">
 
           <!-- Excerpt -->
-          <div class="content rte mt-4" data-wow-duration="0.7s" *ngIf="post.content && post.content.rendered">
+          <div class="content rte mt-4" data-wow-duration="0.7s" *ngIf="post.content && post.content.rendered" #container>
             <eval-component [template]="post.content.rendered"></eval-component>
           </div>
 
