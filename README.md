@@ -1,6 +1,8 @@
 # KingAngular
 
-This is the Angular front-end I am creating for Wordpress. In the end I will combine it with an actual WP theme or plugin to activate more features on the REST API and have it as a full-fledged theme.
+This is the Angular 6 + Wordpress integrated theme that I created for my personal website. The front page is hard-coded to minimize load time, but the theme includes resolvers to interface with the Wordpress REST API and a small dynamic template library that can generate components on the fly from any source. This allows Angular templates to be written directly in Wordpress, without having to be hard coded and compiled. 
+
+The Wordpress side is spartan, purely to fit my needs, and includes a couple custom REST hooks to handle things like email and contact forms.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
