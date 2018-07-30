@@ -12,7 +12,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build. The `dist/king-angular` folder is the full theme build including PHP files. `index.html` needs to be updated after builds with the links to the CSS and script files being populated with the proper path, such as: `wp-content/themes/king-angular/script.[hash].js`.
 
 ## Running unit tests
 
