@@ -6,7 +6,9 @@ This is the Angular 6 + Wordpress integrated theme that I created for my persona
 The Wordpress side is spartan, purely to fit my needs, and includes a couple custom REST hooks to handle things like email and contact forms. 
 
 Required Plugins:
+
 https://wordpress.org/plugins/jwt-authentication-for-wp-rest-api/
+
 https://wordpress.org/plugins/better-rest-api-featured-images/
 
 ## Development server
