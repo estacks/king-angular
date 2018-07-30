@@ -1,4 +1,4 @@
-# KingAngular
+# King Angular
 
 This is the Angular 6 + Wordpress integrated theme that I created for my personal website. The front page is hard-coded to minimize load time, but the theme includes resolvers to interface with the Wordpress REST API and a small dynamic template library that can generate components on the fly from any source. This allows Angular templates to be written directly in Wordpress, without having to be hard coded and compiled. 
 
