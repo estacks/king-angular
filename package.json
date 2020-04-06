@@ -24,6 +24,7 @@
     "@angular/router": "^9.1.0",
     "@nicky-lenaers/ngx-scroll-to": "^3.0.1",
     "angular-bootstrap-md": "^9.0.1",
+    "angular5-csv": "^0.2.11",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.4",
     "document-register-element": "^1.14.3",
