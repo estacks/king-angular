@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, AfterContentInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as Typed from 'typed.js';
+import Typed from 'typed.js';
 
 import { WpService } from 'src/app/services/wp.service';
 import { HeadService } from 'src/app/services/head.service';

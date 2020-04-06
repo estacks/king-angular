@@ -13,19 +13,19 @@
                     <!--Body-->
                     <div class="md-form">
                         <i class="fa fa-user prefix grey-text"></i>
-                        <input type="text" id="contact-name" class="form-control" [(ngModel)]="email.name" name="name" required data-error=" " data-success=" " mdbInputDirective>
+                        <input type="text" id="contact-name" class="form-control" [(ngModel)]="email.name" name="name" required data-error=" " data-success=" " mdbInput>
                         <label for="contact-name">Your name</label>
                     </div>
                     <div class="md-form">
                         <i class="fa fa-envelope prefix grey-text"></i>
-                        <input type="email" id="contact-email" class="form-control" [(ngModel)]="email.email" name="email" required data-error=" " data-success=" " mdbInputDirective>
+                        <input type="email" id="contact-email" class="form-control" [(ngModel)]="email.email" name="email" required data-error=" " data-success=" " mdbInput>
                         <label for="contact-email">Your email</label>
                     </div>
 
                     <!--Textarea with icon prefix-->
                     <div class="md-form">
                         <i class="fa fa-pencil prefix grey-text"></i>
-                        <textarea type="text" id="contact-message" class="md-textarea form-control" [(ngModel)]="email.message" name="message" required data-error=" " data-success=" " mdbInputDirective></textarea>
+                        <textarea type="text" id="contact-message" class="md-textarea form-control" [(ngModel)]="email.message" name="message" required data-error=" " data-success=" " mdbInput></textarea>
                         <label for="contact-message">Your message</label>
                     </div>
 
