@@ -8,9 +8,9 @@ import {
   RECAPTCHA_SETTINGS,
   RecaptchaSettings,
   RecaptchaLoaderService,
-  RecaptchaModule
+  RecaptchaModule,
+  RecaptchaFormsModule
 } from 'ng-recaptcha';
-import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 import { EvalComponentModule } from 'projects/eval-component/src/public_api';
 //import { EvalComponentModule } from 'eval-component';
